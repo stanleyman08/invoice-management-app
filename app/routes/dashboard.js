@@ -1,7 +1,7 @@
 // core components/views
-import DashboardView from "../views/dashboard.js";
-import CustomersView from "../views/customers.js";
-import OrdersView from "../views/orders.js";
+import DashboardView from "../views/Dashboard/dashboard.js";
+import CustomersView from "../views/Customers/customers.js";
+import OrdersView from "../views/Orders/orders.js";
 
 const dashboardRoutes = [
     {
