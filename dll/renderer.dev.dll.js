@@ -147,6 +147,18 @@ eval("module.exports = electron-debug;\n\n//# sourceURL=webpack://renderer/exter
 
 /***/ }),
 
+/***/ "electron-json-storage":
+/*!****************************************!*\
+  !*** external "electron-json-storage" ***!
+  \****************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = electron-json-storage;\n\n//# sourceURL=webpack://renderer/external_%22electron-json-storage%22?");
+
+/***/ }),
+
 /***/ "electron-log":
 /*!*******************************!*\
   !*** external "electron-log" ***!
