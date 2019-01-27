@@ -123,6 +123,18 @@ eval("module.exports = @material-ui/core;\n\n//# sourceURL=webpack://renderer/ex
 
 /***/ }),
 
+/***/ "bluebird":
+/*!***************************!*\
+  !*** external "bluebird" ***!
+  \***************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = bluebird;\n\n//# sourceURL=webpack://renderer/external_%22bluebird%22?");
+
+/***/ }),
+
 /***/ "devtron":
 /*!**************************!*\
   !*** external "devtron" ***!

@@ -16,7 +16,11 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardBody from "../../components/Card/CardBody.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 
-import SchoolFormDialog from "../../components/Dialogs/SchoolFormDialog.js"
+import SchoolFormDialog from "../../components/Dialogs/SchoolFormDialog.js";
+import SchoolList from "../../components/List/SchoolList.js";
+
+const Bluebird = require('bluebird');
+const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
 
 const styles = {
   cardCategoryWhite: {
@@ -41,11 +45,17 @@ class Orders extends React.Component {
 
     state = {
         openFormDialog: false,
+        schoolsData: [],
+    }
+
+    componentDidMount() {
+        this.loadData();
     }
 
     loadData = () => {
-        // console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ]}));
-        console.log(storage.getDataPath());
+        storage.getAsync("schools").then((data) => {
+            this.setState({schoolsData: data["schools"]});
+        });
     };
 
     handleClickOpen = () => {
@@ -67,15 +77,13 @@ class Orders extends React.Component {
                                 <h4 className={classes.cardTitleWhite}> Schools</h4>
                             </CardHeader>
                             <CardBody>
-                                <Button onClick={this.loadData}> 
-                                    Load 
-                                </Button>
+                                <SchoolList schoolsData={this.state.schoolsData} />
                             </CardBody>
                             <CardFooter>
                                 <Button color="primary" onClick={this.handleClickOpen}> 
                                     Add 
                                 </Button>
-                                <SchoolFormDialog openFormDialog={this.state.openFormDialog} onHandleClose={this.handleClose}/>
+                                <SchoolFormDialog onLoadData={this.loadData} openFormDialog={this.state.openFormDialog} onHandleClose={this.handleClose}/>
                             </CardFooter>
                         </Card>
                     </GridItem>

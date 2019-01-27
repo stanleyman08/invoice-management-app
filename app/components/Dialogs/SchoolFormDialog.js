@@ -8,12 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 // core components
 import Button from "../../components/CustomButtons/Button.js";
-import Data from "../../utils/data.js";
+
+const Bluebird = require('bluebird');
+const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
 
 class SchoolFormDialog extends React.Component {
     constructor(props) {
         super(props);
-        this.schoolsData = new Data("schools");
     }
 
     state = {
@@ -25,8 +26,22 @@ class SchoolFormDialog extends React.Component {
     };
 
     handleAdd = (e) => {
-        this.schoolsData.add("schools", this.state.name);
-        this.props.onHandleClose();
+        storage.getAsync("schools").then((data) => {
+            if (Object.keys(data).length != 0) {
+                data["schools"].push({name: this.state.name});
+                storage.setAsync("schools", data).then(() => {
+                    this.props.onHandleClose();
+                    this.setState({ name: ""});
+                    this.props.onLoadData();
+                });
+            } else {
+                storage.setAsync("schools", {key: [ this.state.name ]}).then(() => {
+                    this.props.onHandleClose();
+                    this.setState({ name: ""});
+                    this.props.onLoadData();
+                });
+            }
+        });
     };
 
     render() {
