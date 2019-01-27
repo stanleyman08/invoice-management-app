@@ -1,21 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import Root from './containers/Root.js';
+import { configureStore, history } from './store/configureStore';
 
-// import "assets/css/material-dashboard-react.css?v=1.5.0";
-
-import indexRoutes from "./routes/index.js";
-
-const hist = createBrowserHistory();
-
-ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      {indexRoutes.map((prop, key) => {
-        return <Route path={prop.path} component={prop.component} key={key} />;
-      })}
-    </Switch>
-  </Router>,
-  document.getElementById("root")
+render(
+    <AppContainer>
+        <Root />
+    </AppContainer>,
+    document.getElementById("root")
 );
+
+if (module.hot) {
+  module.hot.accept('./containers/Root.js', () => {
+    // eslint-disable-next-line global-require
+    const NextRoot = require('./containers/Root.js').default;
+    render(
+      <AppContainer>
+        <NextRoot />
+      </AppContainer>,
+      document.getElementById('root')
+    );
+  });
+}
