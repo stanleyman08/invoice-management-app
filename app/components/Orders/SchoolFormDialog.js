@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 // core components
-import Button from "../../components/CustomButtons/Button.js";
+import Button from "../CustomButtons/Button.js";
 
 const Bluebird = require('bluebird');
 const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
