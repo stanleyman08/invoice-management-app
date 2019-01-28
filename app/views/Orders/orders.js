@@ -77,7 +77,7 @@ class Orders extends React.Component {
                                 <h4 className={classes.cardTitleWhite}> Schools</h4>
                             </CardHeader>
                             <CardBody>
-                                <SchoolList schoolsData={this.state.schoolsData} />
+                                <SchoolList onLoadData={this.loadData} schoolsData={this.state.schoolsData} />
                             </CardBody>
                             <CardFooter>
                                 <Button color="primary" onClick={this.handleClickOpen}> 
