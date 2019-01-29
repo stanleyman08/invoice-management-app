@@ -1,10 +1,11 @@
-import React from "react"
-
+import React from "react";
+import Link from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "../Card/Card.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardBody from "../Card/CardBody.js";
 import CardFooter from "../Card/CardFooter.js";
+import Button from "../CustomButtons/Button.js";
 
 const styles = {
   cardCategoryWhite: {
@@ -28,7 +29,11 @@ const styles = {
 class SchoolLanding extends React.Component {
     constructor(props) {
         super(props);
-    }
+    };
+
+    goBack = () => {
+        this.props.history.goBack();
+    };
 
     render() {
         const {classes} = this.props;
@@ -43,7 +48,9 @@ class SchoolLanding extends React.Component {
                     tbd
                 </CardBody>
                 <CardFooter>
-                    
+                    <Button onClick={this.goBack}>
+                        back
+                    </Button>
                 </CardFooter>
             </Card>
         );

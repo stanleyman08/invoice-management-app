@@ -5,6 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridItem from "../../components/Grid/GridItem.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
+import Button from "../../components/CustomButtons/Button.js";
 
 import SchoolListLanding from "../../components/Orders/SchoolListLanding";
 import SchoolLanding from "../../components/Orders/SchoolLanding";
@@ -30,28 +31,13 @@ class Orders extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const SchoolListPage = () => {
-            return (    
-                <SchoolListLanding
-                    onLoadData={this.loadData}
-                    schoolsData={this.state.schoolsData}
-                />
-            );
-        };
-        const SchoolPage = (props, schoolsData) => {
-            return (
-                <SchoolLanding
-                    schoolData={schoolsData[props.match.params.schoolIndex]}
-                />
-            );
-        }
         return (
             <div>
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                         <Switch>
-                            <Route exact path="/orders" render={SchoolListPage} />
-                            <Route path="/orders/:schoolIndex" render={(props) => (SchoolPage(props, this.state.schoolsData))} />
+                            <Route exact path="/orders" render={(props) => <SchoolListLanding onLoadData={this.loadData} schoolsData={this.state.schoolsData} {...props} />} />
+                            <Route path="/orders/:schoolIndex" render={(props) => <SchoolLanding schoolData={this.state.schoolsData[props.match.params.schoolIndex]} {...props} />} />
                         </Switch>
                     </GridItem>
                 </GridContainer>
