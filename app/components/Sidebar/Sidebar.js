@@ -12,7 +12,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 // core components
-// import HeaderLinks from "components/Header/HeaderLinks.jsx";
+import HeaderLinks from "../Header/HeaderLinks.js";
 
 import sidebarStyle from "../../assets/jss/material-dashboard-react/components/SidebarStyle.js";
 
@@ -86,6 +86,10 @@ const Sidebar = ({ ...props }) => {
           }}
         >
           {brand}
+          <div className={classes.sidebarWrapper}>
+            <HeaderLinks />
+            {links}
+          </div>
           {image !== undefined ? (
             <div
               className={classes.background}

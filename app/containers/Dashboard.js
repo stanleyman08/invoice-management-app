@@ -9,16 +9,13 @@ import Routes from '../routes/dashboard.js';
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import Sidebar from "../components/Sidebar/Sidebar.js";
+import Header from "../components/Header/Header.js";
 
 import image from "../assets/img/sidebar-2.jpg";
 import logo from "../assets/img/reactlogo.png";
 
 import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.js";
 
-// type Props = {
-//   store: Store,
-//   history: {}
-// };
 const switchRoutes = (
   <Switch>
     {Routes.map((prop, key) => {
@@ -56,6 +53,11 @@ class Dashboard extends Component<Props> {
           {...rest}
         />
         <div className={classes.mainPanel} ref="mainPanel">
+	        {/*<Header
+	          routes={Routes}
+	          handleDrawerToggle={this.handleDrawerToggle}
+	          {...rest}
+	        />*/}
           {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
           {this.getRoute() ? (
             <div className={classes.content}>
