@@ -7,19 +7,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from "../CustomButtons/Button.js";
 
 import { Link } from "react-router-dom";
 
 const Bluebird = require('bluebird');
 const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
 
-const styles = {
-    removeUnderline: {
-        textDecoration: "none"
-    }
-}
-
-class SchoolList extends React.Component {
+class OrderList extends React.Component {
     constructor(props) {
         super(props);
     };
@@ -27,7 +22,7 @@ class SchoolList extends React.Component {
     handleDelete = (itemIndex) => {
         storage.getAsync("schools").then((data) => {
             if (Object.keys(data).length != 0) {
-                data["schools"].splice(itemIndex, 1);
+                data["schools"][this.props.schoolIndex]["orders"].splice(itemIndex, 1)
                 storage.setAsync("schools", data).then(() => {
                     this.props.onLoadData();
                 });
@@ -36,12 +31,14 @@ class SchoolList extends React.Component {
             }
         });
     };
+
     render() {
         const { classes } = this.props;
-        const listSchools = this.props.schoolsData.map((school, i) =>
+        const currentPath = this.props.location.pathname;
+        const listOrders = this.props.schoolData["orders"].map((order, i) =>
             <div key={i}>
-                <ListItem button component={Link} to={`/orders/${i}`}>
-                    <ListItemText primary={school.name}/>
+                <ListItem button component={Link} to={`${this.props.match.url}/${i}`} >
+                    <ListItemText primary={order.orderId}/>
                     <ListItemSecondaryAction onClick={() => this.handleDelete(i)}>
                         <IconButton aria-label="Delete" >
                             <DeleteIcon />
@@ -51,11 +48,13 @@ class SchoolList extends React.Component {
             </div>
         );
         return (
-            <List>
-                {listSchools}
-            </List>
+            <div>
+                <List>
+                    {listOrders}
+                </List>
+            </div>
         );
     };
 }
 
-export default withStyles(styles)(SchoolList);
+export default OrderList;

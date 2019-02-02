@@ -1,11 +1,15 @@
 import React from "react";
-import Link from "react-router-dom";
+import { Switch, Link, Route} from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "../Card/Card.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardBody from "../Card/CardBody.js";
 import CardFooter from "../Card/CardFooter.js";
 import Button from "../CustomButtons/Button.js";
+
+import OrderList from "./OrderList.js"
+import OrderFormDialog from "./OrderFormDialog.js";
+import OrderLanding from "./OrderLanding.js";
 
 const styles = {
   cardCategoryWhite: {
@@ -31,13 +35,28 @@ class SchoolLanding extends React.Component {
         super(props);
     };
 
+    state = {
+        openOrderFormDialog: false,
+    }
+
     goBack = () => {
         this.props.history.goBack();
     };
 
+    handleClickOpen = () => {
+        this.setState({ openOrderFormDialog: true });
+    };
+
+    handleClose = () => {
+        this.setState({ openOrderFormDialog: false });
+    };
+    test = () => {
+        console.log(this.props.location.pathname);
+    };
+
     render() {
         const {classes} = this.props;
-        return (
+        const SchoolLanding = () => 
             <Card>
                 <CardHeader color="primary">
                     <h4 className={classes.cardTitleWhite}>
@@ -45,14 +64,26 @@ class SchoolLanding extends React.Component {
                     </h4>
                 </CardHeader>
                 <CardBody>
-                    tbd
+                    <OrderList onLoadData={this.props.onLoadData} schoolData={this.props.schoolData} {...this.props}/>
                 </CardBody>
                 <CardFooter>
                     <Button onClick={this.goBack}>
                         back
                     </Button>
+                    <Button onClick={this.test}>
+                        navigate to
+                    </Button>
+                    <Button onClick={this.handleClickOpen}>
+                        Add
+                    </Button>
+                     <OrderFormDialog onLoadData={this.props.onLoadData} openOrderFormDialog={this.state.openOrderFormDialog} onHandleClose={this.handleClose} {...this.props}/>
                 </CardFooter>
             </Card>
+        return (
+            <div>
+                <Route path={`${this.props.match.path}/:orderId`} render={(props) => <OrderLanding schoolData={this.props.schoolData} {...props}/>} />
+                <Route exact path={this.props.match.path} render={SchoolLanding} />
+            </div>
         );
     }
 }

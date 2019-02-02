@@ -12,7 +12,7 @@ import Button from "../CustomButtons/Button.js";
 const Bluebird = require('bluebird');
 const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
 
-class SchoolFormDialog extends React.Component {
+class OrderFormDialog extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -28,14 +28,8 @@ class SchoolFormDialog extends React.Component {
     handleAdd = (e) => {
         storage.getAsync("schools").then((data) => {
             if (Object.keys(data).length != 0) {
-                data["schools"].push({name: this.state.name, orders: []});
+                data["schools"][this.props.schoolIndex]["orders"].push({orderId: this.state.name});
                 storage.setAsync("schools", data).then(() => {
-                    this.props.onHandleClose();
-                    this.setState({ name: ""});
-                    this.props.onLoadData();
-                });
-            } else {
-                storage.setAsync("schools", {key: [ this.state.name ]}).then(() => {
                     this.props.onHandleClose();
                     this.setState({ name: ""});
                     this.props.onLoadData();
@@ -46,13 +40,13 @@ class SchoolFormDialog extends React.Component {
 
     render() {
         return (
-            <Dialog open={this.props.openFormDialog} onClose={this.props.onHandleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={this.props.openOrderFormDialog} onClose={this.props.onHandleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Input forms for schools/orgnaizations                        
+                        Input Order forms                       
                     </DialogContentText>
-                <TextField autoFocus margin="dense" id="schoolName" value={this.state.name} onChange={this.handleChange} label="School/Organization" type="text" fullWidth> </TextField>
+                <TextField autoFocus margin="dense" id="orderName" value={this.state.name} onChange={this.handleChange} label="Order" type="text" fullWidth> </TextField>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.onHandleClose} color="primary">
@@ -67,4 +61,4 @@ class SchoolFormDialog extends React.Component {
     }
 }
 
-export default SchoolFormDialog;
+export default OrderFormDialog;
