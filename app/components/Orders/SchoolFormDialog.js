@@ -19,30 +19,47 @@ class SchoolFormDialog extends React.Component {
 
     state = {
         name: "",
+        errorText: ""
     };
 
     handleChange = (e) => {
         this.setState({ name: e.target.value })
     };
 
-    handleAdd = (e) => {
-        storage.getAsync("schools").then((data) => {
-            if (Object.keys(data).length != 0) {
-                data["schools"].push({name: this.state.name, orders: []});
-                storage.setAsync("schools", data).then(() => {
-                    this.props.onHandleClose();
-                    this.setState({ name: ""});
-                    this.props.onLoadData();
-                });
-            } else {
-                storage.setAsync("schools", {key: [ this.state.name ]}).then(() => {
-                    this.props.onHandleClose();
-                    this.setState({ name: ""});
-                    this.props.onLoadData();
-                });
-            }
-        });
+    handleValidation = () => {
+        let nameIsValid = true;
+        if (this.state.name === "") {
+            nameIsValid = false;
+            this.setState({ errorText: "School/Organization is empty"})
+        }
+        return nameIsValid;
     };
+
+    handleAdd = (e) => {
+        if(this.handleValidation()) {
+            storage.getAsync("schools").then((data) => {
+                if (Object.keys(data).length != 0) {
+                    data["schools"].push({name: this.state.name, orders: []});
+                    storage.setAsync("schools", data).then(() => {
+                        this.props.onHandleClose();
+                        this.setState({ name: "", errorText: ""});
+                        this.props.onLoadData();
+                    });
+                } else {
+                    storage.setAsync("schools", {key: [ this.state.name ]}).then(() => {
+                        this.props.onHandleClose();
+                        this.setState({ name: "", errorText: ""});
+                        this.props.onLoadData();
+                    });
+                }
+            });
+        }
+    };
+
+    handleCancel = (e) => {
+        this.props.onHandleClose();
+        this.setState({ errorText: ""});
+    }
 
     render() {
         return (
@@ -52,10 +69,22 @@ class SchoolFormDialog extends React.Component {
                     <DialogContentText>
                         Input forms for schools/orgnaizations                        
                     </DialogContentText>
-                <TextField autoFocus margin="dense" id="schoolName" value={this.state.name} onChange={this.handleChange} label="School/Organization" type="text" fullWidth> </TextField>
+                <TextField 
+                    autoFocus 
+                    margin="dense" 
+                    error={this.state.errorText.length === 0 ? false : true}
+                    helperText={this.state.errorText} 
+                    id="schoolName" 
+                    value={this.state.name} 
+                    onChange={this.handleChange} 
+                    label="School/Organization" 
+                    type="text" 
+                    fullWidth 
+                    required> 
+                </TextField>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.onHandleClose} color="primary">
+                    <Button onClick={this.handleCancel}>
                         Cancel
                     </Button>
                     <Button onClick={this.handleAdd} color="primary">
