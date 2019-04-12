@@ -9,8 +9,9 @@ import TextField from '@material-ui/core/TextField';
 // core components
 import Button from "../CustomButtons/Button.js";
 
-const Bluebird = require('bluebird');
-const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
+// const Bluebird = require('bluebird');
+// const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
+import * as SchoolAPI from "../../utils/SchoolAPI.js"
 
 class OrderFormDialog extends React.Component {
     constructor(props) {
@@ -26,15 +27,20 @@ class OrderFormDialog extends React.Component {
     };
 
     handleAdd = (e) => {
-        storage.getAsync("schools").then((data) => {
-            if (Object.keys(data).length != 0) {
-                data["schools"][this.props.schoolIndex]["orders"].push({orderId: this.state.name});
-                storage.setAsync("schools", data).then(() => {
-                    this.props.onHandleClose();
-                    this.setState({ name: ""});
-                    this.props.onLoadData();
-                });
-            }
+        // storage.getAsync("schools").then((data) => {
+        //     if (Object.keys(data).length != 0) {
+        //         data["schools"][this.props.schoolIndex]["orders"].push({orderId: this.state.name});
+        //         storage.setAsync("schools", data).then(() => {
+        //             this.props.onHandleClose();
+        //             this.setState({ name: ""});
+        //             this.props.onLoadData();
+        //         });
+        //     }
+        // });
+        SchoolAPI.createOrder(this.props.schoolData.name, this.state.name).then(() => {
+        	this.props.onHandleClose();
+        	this.setState({ name: ""});
+        	this.props.onLoadData();
         });
     };
 

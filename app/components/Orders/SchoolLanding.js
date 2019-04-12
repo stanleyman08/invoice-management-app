@@ -54,7 +54,6 @@ class SchoolLanding extends React.Component {
         console.log(this.props.location.pathname);
     };
 
-    // <OrderList onLoadData={this.props.onLoadData} schoolData={this.props.schoolData} {...this.props}/>
     render() {
         const {classes} = this.props;
         const SchoolLanding = () => 
@@ -65,7 +64,7 @@ class SchoolLanding extends React.Component {
                     </h4>
                 </CardHeader>
                 <CardBody>
-                    TBD
+                    <OrderList onLoadData={this.props.onLoadData} schoolData={this.props.schoolData} {...this.props}/>
                 </CardBody>
                 <CardFooter>
                     <Button onClick={this.goBack}>
