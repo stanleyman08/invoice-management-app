@@ -9,8 +9,7 @@ import TextField from '@material-ui/core/TextField';
 // core components
 import Button from "../CustomButtons/Button.js";
 
-const Bluebird = require('bluebird');
-const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
+import * as SchoolAPI from "../../utils/SchoolAPI.js"
 
 class SchoolFormDialog extends React.Component {
     constructor(props) {
@@ -37,22 +36,10 @@ class SchoolFormDialog extends React.Component {
 
     handleAdd = (e) => {
         if(this.handleValidation()) {
-            storage.getAsync("schools").then((data) => {
-                if (Object.keys(data).length != 0) {
-                    data["schools"].push({name: this.state.name, orders: []});
-                    storage.setAsync("schools", data).then(() => {
-                        this.props.onHandleClose();
-                        this.setState({ name: "", errorText: ""});
-                        this.props.onLoadData();
-                    });
-                } else {
-                    storage.setAsync("schools", {key: [ this.state.name ]}).then(() => {
-                        this.props.onHandleClose();
-                        this.setState({ name: "", errorText: ""});
-                        this.props.onLoadData();
-                    });
-                }
-            });
+            SchoolAPI.createSchool(this.state.name);
+            this.props.onHandleClose();
+            this.setState({ name: "", errorText: ""});
+            this.props.onLoadData();
         }
     };
 

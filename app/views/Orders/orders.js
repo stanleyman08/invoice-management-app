@@ -11,8 +11,7 @@ import SchoolListLanding from "../../components/Orders/SchoolListLanding";
 import SchoolLanding from "../../components/Orders/SchoolLanding";
 import OrderLanding from "../../components/Orders/OrderLanding";
 
-const Bluebird = require('bluebird');
-const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
+import * as SchoolAPI from "../../utils/SchoolAPI.js"
 
 class Orders extends React.Component {
     state = {
@@ -25,8 +24,8 @@ class Orders extends React.Component {
     };
 
     loadData = () => {
-        storage.getAsync("schools").then((data) => {
-            this.setState({schoolsData: data["schools"]});
+        SchoolAPI.getAllSchools().then((data) => {
+        	this.setState(({schoolsData: data}));
         });
     };
     render() {

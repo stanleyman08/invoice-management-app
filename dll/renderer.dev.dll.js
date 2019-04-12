@@ -231,6 +231,18 @@ eval("module.exports = material-design-icons;\n\n//# sourceURL=webpack://rendere
 
 /***/ }),
 
+/***/ "nedb-promises":
+/*!********************************!*\
+  !*** external "nedb-promises" ***!
+  \********************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = nedb-promises;\n\n//# sourceURL=webpack://renderer/external_%22nedb-promises%22?");
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "react" ***!

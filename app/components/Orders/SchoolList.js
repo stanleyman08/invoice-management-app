@@ -10,8 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import { Link } from "react-router-dom";
 
-const Bluebird = require('bluebird');
-const storage = Bluebird.promisifyAll(require('electron-json-storage')); 
+import * as SchoolAPI from "../../utils/SchoolAPI.js"
 
 const styles = {
     removeUnderline: {
@@ -24,16 +23,9 @@ class SchoolList extends React.Component {
         super(props);
     };
 
-    handleDelete = (itemIndex) => {
-        storage.getAsync("schools").then((data) => {
-            if (Object.keys(data).length != 0) {
-                data["schools"].splice(itemIndex, 1);
-                storage.setAsync("schools", data).then(() => {
-                    this.props.onLoadData();
-                });
-            } else {
-                error("No data to delete")
-            }
+    handleDelete = (id) => {
+        SchoolAPI.deleteSchool(id).then(() => {
+        	this.props.onLoadData();
         });
     };
     render() {
@@ -42,7 +34,7 @@ class SchoolList extends React.Component {
             <div key={i}>
                 <ListItem button component={Link} to={`/orders/${i}`}>
                     <ListItemText primary={school.name}/>
-                    <ListItemSecondaryAction onClick={() => this.handleDelete(i)}>
+                    <ListItemSecondaryAction onClick={() => this.handleDelete(school["_id"])}>
                         <IconButton aria-label="Delete" >
                             <DeleteIcon />
                         </IconButton>
