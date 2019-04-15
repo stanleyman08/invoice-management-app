@@ -10,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import { Link } from "react-router-dom";
 
-import * as SchoolAPI from "../../utils/SchoolAPI.js"
+import { deleteSchool } from "../../utils/SchoolAPI.js"
 
 const styles = {
     removeUnderline: {
@@ -24,7 +24,7 @@ class SchoolList extends React.Component {
     };
 
     handleDelete = (id) => {
-        SchoolAPI.deleteSchool(id).then(() => {
+        deleteSchool(id).then(() => {
         	this.props.onLoadData();
         });
     };
