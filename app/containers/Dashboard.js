@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 // import { Provider } from 'react-redux';
 // import { ConnectedRouter } from 'connected-react-router';
 // import type { Store } from '../reducers/types';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from 'react-router-dom';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Routes from '../routes/dashboard.js';
 
-import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Sidebar from "../components/Sidebar/Sidebar.js";
-import Header from "../components/Header/Header.js";
+import Sidebar from '../components/Sidebar/Sidebar.js';
+import Header from '../components/Header/Header.js';
 
-import image from "../assets/img/sidebar-2.jpg";
-import logo from "../assets/img/reactlogo.png";
+import image from '../assets/img/sidebar-2.jpg';
+import logo from '../assets/img/reactlogo.png';
 
-import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.js";
+import dashboardStyle from '../assets/jss/material-dashboard-react/layouts/dashboardStyle.js';
 
 const switchRoutes = (
   <Switch>
@@ -32,19 +32,22 @@ class Dashboard extends Component<Props> {
       mobileOpen: false
     };
   }
+
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
+
   getRoute() {
-    return this.props.location.pathname !== "/maps";
+    return this.props.location.pathname !== '/maps';
   }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
       <div className={classes.wrapper}>
         <Sidebar
           routes={Routes}
-          logoText={"Creative Tim"}
+          logoText="Creative Tim"
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
@@ -53,11 +56,11 @@ class Dashboard extends Component<Props> {
           {...rest}
         />
         <div className={classes.mainPanel} ref="mainPanel">
-	        {/*<Header
-	          routes={Routes}
-	          handleDrawerToggle={this.handleDrawerToggle}
-	          {...rest}
-	        />*/}
+          {/* <Header
+              routes={Routes}
+              handleDrawerToggle={this.handleDrawerToggle}
+              {...rest}
+            /> */}
           {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
           <Header />
           {this.getRoute() ? (

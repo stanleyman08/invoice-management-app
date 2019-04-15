@@ -1,5 +1,5 @@
-import Dashboard from "../containers/Dashboard.js";
+import Dashboard from '../containers/Dashboard.js';
 
-const indexRoutes = [{ path: "/", component: Dashboard }];
+const indexRoutes = [{ path: '/', component: Dashboard }];
 
 export default indexRoutes;
