@@ -31,22 +31,9 @@ class OrderList extends React.Component {
             }
         });
     };
-
     render() {
         const { classes } = this.props;
         const currentPath = this.props.location.pathname;
-        const listOrders = this.props.schoolData["orders"].map((order, i) =>
-            <div key={i}>
-                <ListItem button component={Link} to={`${this.props.match.url}/${i}`} >
-                    <ListItemText primary={order.orderId}/>
-                    <ListItemSecondaryAction onClick={() => this.handleDelete(i)}>
-                        <IconButton aria-label="Delete" >
-                            <DeleteIcon />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-            </div>
-        );
         return (
             <div>
                 <List>

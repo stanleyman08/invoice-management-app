@@ -10,6 +10,7 @@ import Button from "../CustomButtons/Button.js";
 import OrderList from "./OrderList.js"
 import OrderFormDialog from "./OrderFormDialog.js";
 import OrderLanding from "./OrderLanding.js";
+import Table from "../Table/table.js"
 
 const styles = {
   cardCategoryWhite: {
@@ -30,6 +31,7 @@ const styles = {
   }
 };
 
+const item = [["asdf","dfasd","asdfsa","asdfsa","asdfas","asdfa","asdf","asdfa"]];
 class SchoolLanding extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,7 @@ class SchoolLanding extends React.Component {
 
     state = {
         openOrderFormDialog: false,
+        dataTable: []
     }
 
     goBack = () => {
@@ -50,8 +53,23 @@ class SchoolLanding extends React.Component {
     handleClose = () => {
         this.setState({ openOrderFormDialog: false });
     };
-    test = () => {
-        console.log(this.props.location.pathname);
+
+    componentDidMount() {
+    	this.updateDataTable();
+    };
+
+    componentDidUpdate(prevProps) {
+    	if (this.props.schoolData.orders !== prevProps.schoolData.orders) {
+    		this.updateDataTable();
+    	}
+    }
+
+    updateDataTable() {
+    	var dataArray = new Array;
+    	this.props.schoolData.orders.forEach(function(order) {
+    		dataArray.push(Object.values(order));
+    	});
+    	this.setState( {dataTable: dataArray });
     };
 
     render() {
@@ -64,7 +82,11 @@ class SchoolLanding extends React.Component {
                     </h4>
                 </CardHeader>
                 <CardBody>
-                    <OrderList onLoadData={this.props.onLoadData} schoolData={this.props.schoolData} {...this.props}/>
+                	<Table
+                		tableHeaderColor="primary"
+                		tableHead={["Name","Div","Order Size", "Day1 Order", "Day2 Order", "Day3 Order", "Day4 Order", "Day5 order"]}
+                		tableData={this.state.dataTable}                	
+                	/>
                 </CardBody>
                 <CardFooter>
                     <Button onClick={this.goBack}>
