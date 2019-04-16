@@ -16,13 +16,25 @@ import Button from '../CustomButtons/Button.js';
 
 import * as SchoolAPI from '../../utils/SchoolAPI.js';
 
+function orderChoices(size, choice) {
+  if (choice === '') {
+    return '';
+  }
+  if (size === 'regular') {
+    return choice;
+  }
+  if (size === 'medium') {
+    return `m${choice}`;
+  }
+  return `l${choice}`;
+}
 class OrderFormDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       div: '',
-      orderSize: '',
+      size: '',
       day1Order: '',
       day2Order: '',
       day3Order: '',
@@ -40,25 +52,30 @@ class OrderFormDialog extends React.Component {
     const {
       name,
       div,
-      orderSize,
+      size,
       day1Order,
       day2Order,
       day3Order,
       day4Order,
       day5Order
     } = this.state;
+    const day1Choices = orderChoices(size, day1Order);
+    const day2Choices = orderChoices(size, day2Order);
+    const day3Choices = orderChoices(size, day3Order);
+    const day4Choices = orderChoices(size, day4Order);
+    const day5Choices = orderChoices(size, day5Order);
     SchoolAPI.createOrder(schoolData.name, {
       name,
       div,
-      orderSize,
-      day1Order,
-      day2Order,
-      day3Order,
-      day4Order,
-      day5Order
+      size,
+      day1Choices,
+      day2Choices,
+      day3Choices,
+      day4Choices,
+      day5Choices
     }).then(() => {
       onHandleClose();
-      this.setState({ name: '', div: '', orderSize: '' });
+      this.setState({ name: '', div: '', size: '' });
       onLoadData();
     });
   };
@@ -98,11 +115,7 @@ class OrderFormDialog extends React.Component {
             {' '}
           </TextField>
           Size:
-          <Select
-            value={this.state.orderSize}
-            onChange={this.handleChange('orderSize')}
-          >
-            <MenuItem value="small">Small</MenuItem>
+          <Select value={this.state.size} onChange={this.handleChange('size')}>
             <MenuItem value="regular">Regular</MenuItem>
             <MenuItem value="medium">Medium</MenuItem>
             <MenuItem value="large">Large</MenuItem>
