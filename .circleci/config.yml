@@ -2,7 +2,27 @@ version: 2
 jobs:
   build:
     docker:
-      - image: electronbuilds/electron:0.0.9
+      - image: electronuserland/builder:wine
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Build electron app
+          command: yarn build
+      - run:
+          name: Run electron test and coverage
+          command: yarn test && yarn test-coverage
+      # - run:
+      #     name: Run eslint
+      #     command: yarn lint
