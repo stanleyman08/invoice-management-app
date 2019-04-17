@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Checkbox from '@material-ui/core/Checkbox';
 
 // core components
 import Button from '../CustomButtons/Button.js';
@@ -28,6 +29,19 @@ function orderChoices(size, choice) {
   }
   return `l${choice}`;
 }
+
+function juiceFruits(juice, fruits) {
+  if (juice && fruits) {
+    return '';
+  }
+  if (juice && !fruits) {
+    return 'nof';
+  }
+  if (!juice && fruits) {
+    return 'nod';
+  }
+  return 'no';
+}
 class OrderFormDialog extends React.Component {
   constructor(props) {
     super(props);
@@ -39,12 +53,18 @@ class OrderFormDialog extends React.Component {
       day2Order: '',
       day3Order: '',
       day4Order: '',
-      day5Order: ''
+      day5Order: '',
+      juice: true,
+      fruits: true
     };
   }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
+  };
+
+  handleCheckbox = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
 
   handleAdd = () => {
@@ -57,13 +77,16 @@ class OrderFormDialog extends React.Component {
       day2Order,
       day3Order,
       day4Order,
-      day5Order
+      day5Order,
+      juice,
+      fruits
     } = this.state;
     const day1Choices = orderChoices(size, day1Order);
     const day2Choices = orderChoices(size, day2Order);
     const day3Choices = orderChoices(size, day3Order);
     const day4Choices = orderChoices(size, day4Order);
     const day5Choices = orderChoices(size, day5Order);
+    const juiceFruitChoices = juiceFruits(juice, fruits);
     SchoolAPI.createOrder(schoolData.name, {
       name,
       div,
@@ -72,10 +95,22 @@ class OrderFormDialog extends React.Component {
       day2Choices,
       day3Choices,
       day4Choices,
-      day5Choices
+      day5Choices,
+      juiceFruitChoices
     }).then(() => {
       onHandleClose();
-      this.setState({ name: '', div: '', size: '' });
+      this.setState({
+        name: '',
+        div: '',
+        size: '',
+        day1Order: '',
+        day2Order: '',
+        day3Order: '',
+        day4Order: '',
+        day5Order: '',
+        juice: true,
+        fruits: true
+      });
       onLoadData();
     });
   };
@@ -160,6 +195,18 @@ class OrderFormDialog extends React.Component {
             <MenuItem value="a">A</MenuItem>
             <MenuItem value="b">B</MenuItem>
           </Select>
+          <Checkbox
+            checked={this.state.juice}
+            onChange={this.handleCheckbox('juice')}
+            value="juice"
+          />
+          juice
+          <Checkbox
+            checked={this.state.fruits}
+            onChange={this.handleCheckbox('fruits')}
+            value="fruits"
+          />
+          fruits
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.onHandleClose} color="primary">
