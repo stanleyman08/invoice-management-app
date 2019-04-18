@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -37,7 +37,8 @@ class SchoolLanding extends React.Component {
     super(props);
     this.state = {
       openOrderFormDialog: false,
-      dataTable: []
+      dataTable: [],
+      countTable: []
     };
   }
 
@@ -54,8 +55,11 @@ class SchoolLanding extends React.Component {
     this.setState({ openOrderFormDialog: false });
   };
 
+  test = name => {};
+
   componentDidMount() {
     this.updateDataTable();
+    this.updateCountTable();
   }
 
   componentDidUpdate(prevProps) {
@@ -74,9 +78,26 @@ class SchoolLanding extends React.Component {
     this.setState({ dataTable: dataArray });
   }
 
+  updateCountTable() {
+    const counts = { a: 0, b: 0, ma: 0, mb: 0, la: 0, lb: 0 };
+    const { schoolData } = this.props;
+    schoolData.orders.forEach(order => {
+      counts[order.day1Choices] += 1;
+      counts[order.day2Choices] += 1;
+      counts[order.day3Choices] += 1;
+      counts[order.day4Choices] += 1;
+      counts[order.day5Choices] += 1;
+    });
+    const countArray = Object.keys(counts).map(key => [
+      key,
+      String(counts[key])
+    ]);
+    this.setState({ countTable: countArray });
+  }
+
   render() {
     const { classes, schoolData, onLoadData, match } = this.props;
-    const { dataTable, openOrderFormDialog } = this.state;
+    const { dataTable, openOrderFormDialog, countTable } = this.state;
     const SchoolLandingRender = () => (
       <Card>
         <CardHeader color="primary">
@@ -97,10 +118,15 @@ class SchoolLanding extends React.Component {
             ]}
             tableData={dataTable}
           />
+          <Table
+            tableHeaderColor="info"
+            tableHead={['Order', 'Count']}
+            tableData={countTable}
+          />
         </CardBody>
         <CardFooter>
           <Button onClick={this.goBack}>back</Button>
-          <Button onClick={this.test}>navigate to</Button>
+          <Button onClick={this.test(schoolData.name)}>debug</Button>
           <Button onClick={this.handleClickOpen}>Add</Button>
           <OrderFormDialog
             onLoadData={onLoadData}

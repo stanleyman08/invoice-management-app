@@ -42,9 +42,7 @@ class OrderLanding extends React.Component {
     return (
       <Card>
         <CardHeader color="primary">
-          <h4 className={classes.cardTitleWhite}>
-            {this.props.schoolData.name}
-          </h4>
+          <h4 className={classes.cardTitleWhite}>tbd</h4>
         </CardHeader>
         <CardBody>tbd</CardBody>
         <CardFooter />
