@@ -1,12 +1,7 @@
 import React from 'react';
 
-class Customers extends React.Component {
+export default class Customers extends React.Component {
   render() {
-    return (
-      <div>
-        <h2> Customers TBD </h2>
-      </div>
-    );
+    return <div>Customers tbd</div>;
   }
 }
-export default Customers;

@@ -9,18 +9,9 @@
       "id": "@material-ui/core",
       "buildMeta": { "providedExports": true }
     },
-    "@material-ui/icons": {
-      "id": "@material-ui/icons",
-      "buildMeta": { "providedExports": true }
-    },
-    "bluebird": { "id": "bluebird", "buildMeta": { "providedExports": true } },
     "devtron": { "id": "devtron", "buildMeta": { "providedExports": true } },
     "electron-debug": {
       "id": "electron-debug",
-      "buildMeta": { "providedExports": true }
-    },
-    "electron-json-storage": {
-      "id": "electron-json-storage",
       "buildMeta": { "providedExports": true }
     },
     "electron-log": {
@@ -32,14 +23,6 @@
       "buildMeta": { "providedExports": true }
     },
     "history": { "id": "history", "buildMeta": { "providedExports": true } },
-    "material-design-icons": {
-      "id": "material-design-icons",
-      "buildMeta": { "providedExports": true }
-    },
-    "nedb-promises": {
-      "id": "nedb-promises",
-      "buildMeta": { "providedExports": true }
-    },
     "react": { "id": "react", "buildMeta": { "providedExports": true } },
     "react-dom": {
       "id": "react-dom",

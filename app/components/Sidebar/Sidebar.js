@@ -8,12 +8,10 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Icon from '@material-ui/core/Icon';
 // core components
-import HeaderLinks from '../Header/HeaderLinks.js';
 
+// import HeaderLinks from '../Header/HeaderLinks.js';
 import sidebarStyle from '../../assets/jss/material-dashboard-react/components/SidebarStyle.js';
 
 const Sidebar = ({ ...props }) => {
@@ -26,25 +24,16 @@ const Sidebar = ({ ...props }) => {
     <List className={classes.list}>
       {routes.map((prop, key) => {
         if (prop.redirect) return null;
-        let activePro = ' ';
-        let listItemClasses;
-        if (prop.path === '/upgrade-to-pro') {
-          activePro = `${classes.activePro} `;
-          listItemClasses = classNames({
-            [` ${classes[color]}`]: true
-          });
-        } else {
-          listItemClasses = classNames({
-            [` ${classes[color]}`]: activeRoute(prop.path)
-          });
-        }
+        const listItemClasses = classNames({
+          [` ${classes[color]}`]: activeRoute(prop.path)
+        });
         const whiteFontClasses = classNames({
           [` ${classes.whiteFont}`]: activeRoute(prop.path)
         });
         return (
           <NavLink
             to={prop.path}
-            className={activePro + classes.item}
+            className={classes.item}
             activeClassName="active"
             key={key}
           >
@@ -62,7 +51,7 @@ const Sidebar = ({ ...props }) => {
   );
   const brand = (
     <div className={classes.logo}>
-      <a href="https://www.creative-tim.com" className={classes.logoLink}>
+      <a href="/" className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
         </div>
@@ -72,7 +61,7 @@ const Sidebar = ({ ...props }) => {
   );
   return (
     <div>
-      <Hidden mdUp implementation="css">
+      <Hidden mdUp>
         <Drawer
           variant="temporary"
           anchor="right"
@@ -87,7 +76,7 @@ const Sidebar = ({ ...props }) => {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-            <HeaderLinks />
+            {/* <HeaderLinks /> */}
             {links}
           </div>
           {image !== undefined ? (
@@ -98,7 +87,7 @@ const Sidebar = ({ ...props }) => {
           ) : null}
         </Drawer>
       </Hidden>
-      <Hidden smDown implementation="css">
+      <Hidden smDown>
         <Drawer
           anchor="left"
           variant="permanent"
