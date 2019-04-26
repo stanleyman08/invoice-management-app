@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, Switch } from 'react-router-dom';
-import type { Store } from '../reducers/types';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import type { Store } from '../reducers/types.js';
 import indexRoutes from '../routes/index.js';
 
 type Props = {
@@ -15,7 +16,7 @@ export default class Root extends Component<Props> {
     const { store, history } = this.props;
     return (
       <Provider store={store}>
-        <Router history={history}>
+        <ConnectedRouter history={history}>
           <Switch>
             {indexRoutes.map((prop, key) => (
               <Route
@@ -26,7 +27,7 @@ export default class Root extends Component<Props> {
               />
             ))}
           </Switch>
-        </Router>
+        </ConnectedRouter>
       </Provider>
     );
   }

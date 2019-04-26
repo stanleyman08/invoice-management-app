@@ -9,6 +9,7 @@
       "id": "@material-ui/core",
       "buildMeta": { "providedExports": true }
     },
+    "camo": { "id": "camo", "buildMeta": { "providedExports": true } },
     "devtron": { "id": "devtron", "buildMeta": { "providedExports": true } },
     "electron-debug": {
       "id": "electron-debug",
@@ -23,6 +24,11 @@
       "buildMeta": { "providedExports": true }
     },
     "history": { "id": "history", "buildMeta": { "providedExports": true } },
+    "material-table": {
+      "id": "material-table",
+      "buildMeta": { "providedExports": true }
+    },
+    "nedb": { "id": "nedb", "buildMeta": { "providedExports": true } },
     "react": { "id": "react", "buildMeta": { "providedExports": true } },
     "react-dom": {
       "id": "react-dom",

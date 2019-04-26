@@ -53,7 +53,7 @@ class App extends React.Component {
           color="blue"
           {...rest}
         />
-        <div className={classes.mainPanel} ref='mainPanel'>
+        <div className={classes.mainPanel} ref="mainPanel">
           {this.getRoute() ? (
             <div className={classes.content}>
               <div className={classes.container}>{switchRoutes}</div>
