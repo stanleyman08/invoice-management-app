@@ -1,6 +1,7 @@
 import {
   LOAD_SCHOOLS_SUCCESS,
-  LOAD_SCHOOL_SUCCESS
+  LOAD_SCHOOL_SUCCESS,
+  UPDATE_SCHOOL_SUCCESS
 } from '../actions/actionType.js';
 
 const initialState = {
@@ -14,6 +15,11 @@ export function schoolReducer(state = initialState, action) {
       return {
         ...state,
         schools: action.payload
+      };
+    case UPDATE_SCHOOL_SUCCESS:
+      return {
+        ...state,
+        currentSchool: [action.payload]
       };
     case LOAD_SCHOOL_SUCCESS:
       return {

@@ -79,7 +79,6 @@ export function createSchool(name) {
       })
       .then(school => {
         dispatch(createSchoolSuccess(school));
-        dispatch(loadSchools());
       });
   };
 }
@@ -104,6 +103,7 @@ export function updateSchoolOrder(id, order) {
       })
       .then(newSchool => {
         dispatch(updateSchoolSuccess(newSchool));
+        dispatch(loadSchools());
       });
   };
 }
