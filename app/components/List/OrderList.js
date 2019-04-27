@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import MaterialTable from 'material-table';
+import Search from '@material-ui/icons/Search';
+import ResetSearch from '@material-ui/icons/Clear';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import NextPage from '@material-ui/icons/ChevronRight';
+import PreviousPage from '@material-ui/icons/ChevronLeft';
 
 const OrderList = ({ orders }) => (
   <div style={{ maxWidth: '100%' }}>
@@ -20,6 +26,14 @@ const OrderList = ({ orders }) => (
       data={orders}
       options={{
         showTitle: false
+      }}
+      icons={{
+        Search,
+        ResetSearch,
+        FirstPage,
+        LastPage,
+        NextPage,
+        PreviousPage
       }}
     />
   </div>

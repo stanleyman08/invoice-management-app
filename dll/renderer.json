@@ -9,6 +9,10 @@
       "id": "@material-ui/core",
       "buildMeta": { "providedExports": true }
     },
+    "@material-ui/icons": {
+      "id": "@material-ui/icons",
+      "buildMeta": { "providedExports": true }
+    },
     "camo": { "id": "camo", "buildMeta": { "providedExports": true } },
     "devtron": { "id": "devtron", "buildMeta": { "providedExports": true } },
     "electron-debug": {
