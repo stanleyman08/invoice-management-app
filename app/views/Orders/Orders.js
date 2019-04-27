@@ -32,7 +32,6 @@ class Orders extends React.Component {
     return (
       <div>
         <Switch>
-          {console.log(typeof match)}
           <Route
             exact
             path={match.path}
