@@ -1,64 +1,89 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-// @material-ui/core components
-// core components
-import GridItem from '../../components/Grid/GridItem.js';
-import GridContainer from '../../components/Grid/GridContainer.js';
+import { connect } from 'react-redux';
 
-import SchoolListLanding from '../../components/Orders/SchoolListLanding';
-import SchoolLanding from '../../components/Orders/SchoolLanding';
+import OrdersLanding from './OrdersLanding.js';
+import SchoolLanding from './SchoolLanding.js';
 
-import * as SchoolAPI from '../../utils/SchoolAPI.js';
+import {
+  loadSchools,
+  loadSchool,
+  createSchool,
+  createOrder
+} from '../../actions/schoolAction.js';
 
 class Orders extends React.Component {
-  state = {
-    schoolsData: []
-  };
-
   componentDidMount() {
-    this.loadData();
+    const { onLoadSchools } = this.props;
+    onLoadSchools();
   }
 
-  loadData = () => {
-    SchoolAPI.getAllSchools().then(data => {
-      this.setState({ schoolsData: data });
-    });
-  };
-
   render() {
-    const { schoolsData } = this.state;
+    const {
+      match,
+      schools,
+      onCreateSchool,
+      onCreateOrder,
+      onLoadSchools,
+      onLoadSchool,
+      currentSchool
+    } = this.props;
     return (
       <div>
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
-            <Switch>
-              <Route
-                exact
-                path="/orders"
-                render={props => (
-                  <SchoolListLanding
-                    onLoadData={this.loadData}
-                    schoolsData={schoolsData}
-                    {...props}
-                  />
-                )}
+        <Switch>
+          {console.log(typeof match)}
+          <Route
+            exact
+            path={match.path}
+            render={() => (
+              <OrdersLanding
+                schools={schools}
+                onLoadSchools={onLoadSchools}
+                onCreateSchool={onCreateSchool}
               />
-              <Route
-                path="/orders/:schoolIndex"
-                render={props => (
-                  <SchoolLanding
-                    onLoadData={this.loadData}
-                    schoolData={schoolsData[props.match.params.schoolIndex]}
-                    schoolIndex={props.match.params.schoolIndex}
-                    {...props}
-                  />
-                )}
+            )}
+          />
+          <Route
+            path={`${match.path}/:schoolId`}
+            render={props => (
+              <SchoolLanding
+                currentSchool={currentSchool}
+                onLoadSchool={onLoadSchool}
+                schoolId={props.match.params.schoolId}
+                onCreateOrder={onCreateOrder}
               />
-            </Switch>
-          </GridItem>
-        </GridContainer>
+            )}
+          />
+        </Switch>
       </div>
     );
   }
 }
-export default Orders;
+
+Orders.propTypes = {
+  onCreateSchool: PropTypes.func.isRequired,
+  onCreateOrder: PropTypes.func.isRequired,
+  onLoadSchools: PropTypes.func.isRequired,
+  onLoadSchool: PropTypes.func.isRequired,
+  schools: PropTypes.arrayOf(Object).isRequired,
+  currentSchool: PropTypes.arrayOf(Object).isRequired,
+  match: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  schools: state.schoolReducer.schools,
+  currentSchool: state.schoolReducer.currentSchool
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoadSchools: () => dispatch(loadSchools()),
+  onCreateSchool: name => dispatch(createSchool(name)),
+  onCreateOrder: (id, order) => dispatch(createOrder(id, order)),
+  onLoadSchool: id => dispatch(loadSchool(id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Orders);

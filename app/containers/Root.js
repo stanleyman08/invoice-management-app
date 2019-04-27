@@ -1,23 +1,34 @@
-import React from 'react';
-import { createBrowserHistory } from 'history';
-import { Router, Route, Switch } from 'react-router-dom';
+// @flow
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import type { Store } from '../reducers/types.js';
 import indexRoutes from '../routes/index.js';
 
-const hist = createBrowserHistory();
+type Props = {
+  store: Store,
+  history: {}
+};
 
-class Root extends React.Component {
+export default class Root extends Component<Props> {
   render() {
+    const { store, history } = this.props;
     return (
-      <Router history={hist}>
-        <Switch>
-          {indexRoutes.map((prop, key) => (
-            <Route path={prop.path} component={prop.component} key={key} />
-          ))}
-          ;
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Switch>
+            {indexRoutes.map((prop, key) => (
+              <Route
+                history={history}
+                path={prop.path}
+                component={prop.component}
+                key={key}
+              />
+            ))}
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }
-
-export default Root;

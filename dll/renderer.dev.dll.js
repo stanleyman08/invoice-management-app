@@ -123,27 +123,15 @@ eval("module.exports = @material-ui/core;\n\n//# sourceURL=webpack://renderer/ex
 
 /***/ }),
 
-/***/ "@material-ui/icons":
-/*!*************************************!*\
-  !*** external "@material-ui/icons" ***!
-  \*************************************/
+/***/ "camo":
+/*!***********************!*\
+  !*** external "camo" ***!
+  \***********************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("module.exports = @material-ui/icons;\n\n//# sourceURL=webpack://renderer/external_%22@material-ui/icons%22?");
-
-/***/ }),
-
-/***/ "bluebird":
-/*!***************************!*\
-  !*** external "bluebird" ***!
-  \***************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-eval("module.exports = bluebird;\n\n//# sourceURL=webpack://renderer/external_%22bluebird%22?");
+eval("module.exports = camo;\n\n//# sourceURL=webpack://renderer/external_%22camo%22?");
 
 /***/ }),
 
@@ -168,18 +156,6 @@ eval("module.exports = devtron;\n\n//# sourceURL=webpack://renderer/external_%22
 /***/ (function(module, exports) {
 
 eval("module.exports = electron-debug;\n\n//# sourceURL=webpack://renderer/external_%22electron-debug%22?");
-
-/***/ }),
-
-/***/ "electron-json-storage":
-/*!****************************************!*\
-  !*** external "electron-json-storage" ***!
-  \****************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-eval("module.exports = electron-json-storage;\n\n//# sourceURL=webpack://renderer/external_%22electron-json-storage%22?");
 
 /***/ }),
 
@@ -219,27 +195,27 @@ eval("module.exports = history;\n\n//# sourceURL=webpack://renderer/external_%22
 
 /***/ }),
 
-/***/ "material-design-icons":
-/*!****************************************!*\
-  !*** external "material-design-icons" ***!
-  \****************************************/
+/***/ "material-table":
+/*!*********************************!*\
+  !*** external "material-table" ***!
+  \*********************************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("module.exports = material-design-icons;\n\n//# sourceURL=webpack://renderer/external_%22material-design-icons%22?");
+eval("module.exports = material-table;\n\n//# sourceURL=webpack://renderer/external_%22material-table%22?");
 
 /***/ }),
 
-/***/ "nedb-promises":
-/*!********************************!*\
-  !*** external "nedb-promises" ***!
-  \********************************/
+/***/ "nedb":
+/*!***********************!*\
+  !*** external "nedb" ***!
+  \***********************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("module.exports = nedb-promises;\n\n//# sourceURL=webpack://renderer/external_%22nedb-promises%22?");
+eval("module.exports = nedb;\n\n//# sourceURL=webpack://renderer/external_%22nedb%22?");
 
 /***/ }),
 

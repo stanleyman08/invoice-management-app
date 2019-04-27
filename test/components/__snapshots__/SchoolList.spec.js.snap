@@ -3,7 +3,9 @@
 exports[`SchoolList component renders without throwing an error 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <WithStyles(SchoolList) />,
+  Symbol(enzyme.__unrendered__): <SchoolList
+    schools={Array []}
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -17,12 +19,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "classes": Object {
-        "removeUnderline": "SchoolList-removeUnderline-1",
-      },
+      "children": Array [],
     },
     "ref": null,
-    "rendered": null,
+    "rendered": Array [],
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -31,12 +31,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "classes": Object {
-          "removeUnderline": "SchoolList-removeUnderline-1",
-        },
+        "children": Array [],
       },
       "ref": null,
-      "rendered": null,
+      "rendered": Array [],
       "type": [Function],
     },
   ],
