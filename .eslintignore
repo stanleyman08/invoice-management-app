@@ -1,0 +1,4 @@
+/dll/*.js
+/app/dist/*.js
+/app/main.prod.js
+/configs/*.js

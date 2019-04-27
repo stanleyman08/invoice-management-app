@@ -28,9 +28,7 @@ describe('SchoolList component', () => {
   });
 
   it('shows a list of schools if schools exist: 1 school', () => {
-    const schools = [
-      { name: 'Churchill', orders: [], _id: 'mockid1' }
-    ];
+    const schools = [{ name: 'Churchill', orders: [], _id: 'mockid1' }];
     const component = mount(
       <MemoryRouter>
         <SchoolList schools={schools} />
