@@ -23,3 +23,13 @@ export function juiceFruits(juice, fruits) {
   }
   return 'no';
 }
+
+export function arrayOfOrders(customers) {
+  let orders = [];
+  if (typeof customers !== 'undefined') {
+    customers.forEach(customer => {
+      orders = orders.concat(customer.orders);
+    });
+  }
+  return orders;
+}

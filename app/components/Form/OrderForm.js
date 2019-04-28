@@ -19,7 +19,8 @@ class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      customerName: '',
+      orderName: '',
       div: '',
       size: '',
       day1: '',
@@ -34,7 +35,8 @@ class OrderForm extends React.Component {
 
   clearInput = () => {
     this.setState({
-      name: '',
+      customerName: '',
+      orderName: '',
       div: '',
       size: '',
       day1: '',
@@ -58,7 +60,8 @@ class OrderForm extends React.Component {
   handleAdd = () => {
     const { onHandleClose, createOrder, schoolId } = this.props;
     const {
-      name,
+      customerName,
+      orderName,
       div,
       size,
       day1,
@@ -70,7 +73,8 @@ class OrderForm extends React.Component {
       fruits
     } = this.state;
     createOrder(schoolId, {
-      name,
+      customerName,
+      orderName,
       div,
       size,
       day1,
@@ -104,10 +108,22 @@ class OrderForm extends React.Component {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            label="Name"
+            id="customerName"
+            value={this.state.customerName}
+            onChange={this.handleChange('customerName')}
+            label="Customer Name"
+            type="text"
+            fullWidth
+          >
+            {' '}
+          </TextField>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="orderName"
+            value={this.state.orderName}
+            onChange={this.handleChange('orderName')}
+            label="Order Name"
             type="text"
             fullWidth
           >

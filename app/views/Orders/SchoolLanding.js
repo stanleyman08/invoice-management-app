@@ -12,6 +12,8 @@ import CardFooter from '../../components/Card/CardFooter.js';
 import OrderForm from '../../components/Form/OrderForm.js';
 import OrderList from '../../components/List/OrderList.js';
 
+import { arrayOfOrders } from '../../utils/utils.js';
+
 const styles = {
   cardCategoryWhite: {
     color: 'rgba(255,255,255,.62)',
@@ -68,7 +70,8 @@ class SchoolLanding extends React.Component {
         </CardHeader>
         <CardBody>
           <OrderList
-            orders={currentSchool[0].orders}
+            schoolId={schoolId}
+            orders={arrayOfOrders(currentSchool[0].customers)}
             deleteOrder={onDeleteOrder}
           />
         </CardBody>

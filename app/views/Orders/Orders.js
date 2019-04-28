@@ -11,7 +11,7 @@ import {
   loadSchool,
   createSchool,
   createOrder,
-  deleteOrderFromSchool
+  deleteOrderFromCustomer
 } from '../../actions/schoolAction.js';
 
 class Orders extends React.Component {
@@ -83,7 +83,7 @@ const mapDispatchToProps = dispatch => ({
   onLoadSchools: () => dispatch(loadSchools()),
   onCreateSchool: name => dispatch(createSchool(name)),
   onCreateOrder: (id, order) => dispatch(createOrder(id, order)),
-  onDeleteOrder: id => dispatch(deleteOrderFromSchool(id)),
+  onDeleteOrder: (id, data) => dispatch(deleteOrderFromCustomer(id, data)),
   onLoadSchool: id => dispatch(loadSchool(id))
 });
 
