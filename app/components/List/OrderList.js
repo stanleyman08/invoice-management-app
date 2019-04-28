@@ -8,8 +8,9 @@ import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import NextPage from '@material-ui/icons/ChevronRight';
 import PreviousPage from '@material-ui/icons/ChevronLeft';
+import Delete from '@material-ui/icons/DeleteOutline';
 
-const OrderList = ({ orders }) => (
+const OrderList = ({ orders, deleteOrder }) => (
   <div style={{ maxWidth: '100%' }}>
     <MaterialTable
       columns={[
@@ -24,8 +25,16 @@ const OrderList = ({ orders }) => (
         { title: 'juiceFruits', field: 'juiceFruits' }
       ]}
       data={orders}
+      actions={[
+        {
+          icon: Delete,
+          tooltip: 'Delete Order',
+          onClick: (event, rowData) => deleteOrder(rowData._id)
+        }
+      ]}
       options={{
-        showTitle: false
+        showTitle: false,
+        actionsColumnIndex: -1
       }}
       icons={{
         Search,
@@ -40,7 +49,8 @@ const OrderList = ({ orders }) => (
 );
 
 OrderList.propTypes = {
-  orders: PropTypes.arrayOf(Object).isRequired
+  orders: PropTypes.arrayOf(Object).isRequired,
+  deleteOrder: PropTypes.func.isRequired
 };
 
 export default OrderList;

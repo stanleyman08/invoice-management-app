@@ -10,7 +10,8 @@ import {
   loadSchools,
   loadSchool,
   createSchool,
-  createOrder
+  createOrder,
+  deleteOrderFromSchool
 } from '../../actions/schoolAction.js';
 
 class Orders extends React.Component {
@@ -25,6 +26,7 @@ class Orders extends React.Component {
       schools,
       onCreateSchool,
       onCreateOrder,
+      onDeleteOrder,
       onLoadSchools,
       onLoadSchool,
       currentSchool
@@ -51,6 +53,7 @@ class Orders extends React.Component {
                 onLoadSchool={onLoadSchool}
                 schoolId={props.match.params.schoolId}
                 onCreateOrder={onCreateOrder}
+                onDeleteOrder={onDeleteOrder}
               />
             )}
           />
@@ -63,6 +66,7 @@ class Orders extends React.Component {
 Orders.propTypes = {
   onCreateSchool: PropTypes.func.isRequired,
   onCreateOrder: PropTypes.func.isRequired,
+  onDeleteOrder: PropTypes.func.isRequired,
   onLoadSchools: PropTypes.func.isRequired,
   onLoadSchool: PropTypes.func.isRequired,
   schools: PropTypes.arrayOf(Object).isRequired,
@@ -79,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
   onLoadSchools: () => dispatch(loadSchools()),
   onCreateSchool: name => dispatch(createSchool(name)),
   onCreateOrder: (id, order) => dispatch(createOrder(id, order)),
+  onDeleteOrder: id => dispatch(deleteOrderFromSchool(id)),
   onLoadSchool: id => dispatch(loadSchool(id))
 });
 

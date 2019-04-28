@@ -53,7 +53,13 @@ class SchoolLanding extends React.Component {
   };
 
   render() {
-    const { classes, currentSchool, onCreateOrder, schoolId } = this.props;
+    const {
+      classes,
+      currentSchool,
+      onCreateOrder,
+      schoolId,
+      onDeleteOrder
+    } = this.props;
     const { openOrderForm } = this.state;
     return (
       <Card>
@@ -61,7 +67,10 @@ class SchoolLanding extends React.Component {
           <h4 className={classes.cardTitleWhite}>{currentSchool[0].name}</h4>
         </CardHeader>
         <CardBody>
-          <OrderList orders={currentSchool[0].orders} />
+          <OrderList
+            orders={currentSchool[0].orders}
+            deleteOrder={onDeleteOrder}
+          />
         </CardBody>
         <CardFooter>
           <Button color="primary" onClick={this.handleClickOpen}>
@@ -84,7 +93,8 @@ SchoolLanding.propTypes = {
   schoolId: PropTypes.string.isRequired,
   onLoadSchool: PropTypes.func.isRequired,
   currentSchool: PropTypes.arrayOf(Object).isRequired,
-  onCreateOrder: PropTypes.func.isRequired
+  onCreateOrder: PropTypes.func.isRequired,
+  onDeleteOrder: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(SchoolLanding);

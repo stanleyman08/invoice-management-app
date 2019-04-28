@@ -3,7 +3,9 @@ import {
   CREATE_SCHOOL_SUCCESS,
   LOAD_SCHOOL_SUCCESS,
   CREATE_ORDER_SUCCESS,
-  UPDATE_SCHOOL_SUCCESS
+  UPDATE_SCHOOL_SUCCESS,
+  DELETE_ORDER_SUCCESS,
+  DELETE_SCHOOL_SUCCESS
 } from './actionType.js';
 
 import School from '../nedb/School.js';
@@ -55,6 +57,13 @@ export function updateSchoolSuccess(school) {
   return {
     type: UPDATE_SCHOOL_SUCCESS,
     payload: school
+  };
+}
+
+export function deleteOrderSuccess(numDeleted) {
+  return {
+    type: DELETE_ORDER_SUCCESS,
+    payload: numDeleted
   };
 }
 
@@ -128,6 +137,33 @@ export function createOrder(id, order) {
       .then(orderData => {
         dispatch(createOrderSuccess(orderData));
         dispatch(updateSchoolOrder(id, orderData));
+      });
+  };
+}
+
+export function deleteOrder(id) {
+  return dispatch => {
+    connect(URI)
+      .then(() => Order.find({ _id: id }))
+      .then(order => order[0].delete())
+      .then(numDeleted => {
+        dispatch(deleteOrderSuccess(numDeleted));
+      });
+  };
+}
+
+export function deleteOrderFromSchool(id) {
+  return dispatch => {
+    connect(URI)
+      .then(() => School.find({ orders: id }))
+      .then(school => {
+        school[0].orders.splice(school[0].orders.indexOf(id), 1);
+        return school[0].save();
+      })
+      .then(newSchool => {
+        dispatch(deleteOrder(id));
+        dispatch(updateSchoolSuccess(newSchool));
+        dispatch(loadSchools());
       });
   };
 }
