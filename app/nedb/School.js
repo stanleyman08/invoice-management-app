@@ -1,4 +1,4 @@
-import Order from './Order.js';
+import Customer from './Customer.js';
 
 const Document = require('camo').Document;
 
@@ -7,7 +7,7 @@ class School extends Document {
     super();
 
     this.name = String;
-    this.orders = [Order];
+    this.customers = [Customer];
   }
 
   get schoolName() {

@@ -1,11 +1,12 @@
+import { juiceFruits, orderChoices } from '../utils/utils.js';
+
 const Document = require('camo').Document;
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 
 class Order extends EmbeddedDocument {
   constructor() {
     super();
-
-    this.name = String;
+    this.orderName = String;
     this.div = String;
     this.size = {
       type: String,
@@ -42,9 +43,24 @@ class Customer extends Document {
   constructor() {
     super();
 
-    this.name = String;
-    this.div = String;
+    this.customerName = String;
     this.orders = [Order];
+  }
+
+  set ordersData(order) {
+    this.orders.push(
+      Order.create({
+        orderName: order.orderName,
+        div: order.div,
+        size: order.size,
+        day1: orderChoices(order.size, order.day1),
+        day2: orderChoices(order.size, order.day2),
+        day3: orderChoices(order.size, order.day3),
+        day4: orderChoices(order.size, order.day4),
+        day5: orderChoices(order.size, order.day5),
+        juiceFruits: juiceFruits(order.juice, order.fruits)
+      })
+    );
   }
 }
 

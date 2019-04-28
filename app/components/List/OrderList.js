@@ -10,11 +10,11 @@ import NextPage from '@material-ui/icons/ChevronRight';
 import PreviousPage from '@material-ui/icons/ChevronLeft';
 import Delete from '@material-ui/icons/DeleteOutline';
 
-const OrderList = ({ orders, deleteOrder }) => (
+const OrderList = ({ schoolId, orders, deleteOrder }) => (
   <div style={{ maxWidth: '100%' }}>
     <MaterialTable
       columns={[
-        { title: 'Name', field: 'name' },
+        { title: 'Name', field: 'orderName' },
         { title: 'Div', field: 'div' },
         { title: 'Size', field: 'size' },
         { title: 'Day1', field: 'day1' },
@@ -29,7 +29,8 @@ const OrderList = ({ orders, deleteOrder }) => (
         {
           icon: Delete,
           tooltip: 'Delete Order',
-          onClick: (event, rowData) => deleteOrder(rowData._id)
+          onClick: (event, rowData) => deleteOrder(schoolId, rowData)
+          // onClick: (event, rowData) => console.log(rowData)
         }
       ]}
       options={{
@@ -49,6 +50,7 @@ const OrderList = ({ orders, deleteOrder }) => (
 );
 
 OrderList.propTypes = {
+  schoolId: PropTypes.string.isRequired,
   orders: PropTypes.arrayOf(Object).isRequired,
   deleteOrder: PropTypes.func.isRequired
 };
