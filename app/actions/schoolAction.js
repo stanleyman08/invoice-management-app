@@ -5,7 +5,6 @@ import {
   CREATE_ORDER_SUCCESS,
   UPDATE_SCHOOL_SUCCESS,
   DELETE_ORDER_SUCCESS,
-  DELETE_SCHOOL_SUCCESS
 } from './actionType.js';
 
 import School from '../nedb/School.js';
