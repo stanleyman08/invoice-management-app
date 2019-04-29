@@ -11,7 +11,8 @@ import {
   loadSchool,
   createSchool,
   createOrder,
-  deleteOrderFromCustomer
+  deleteOrderFromCustomer,
+  deleteSchool
 } from '../../actions/schoolAction.js';
 
 class Orders extends React.Component {
@@ -25,6 +26,7 @@ class Orders extends React.Component {
       match,
       schools,
       onCreateSchool,
+      onDeleteSchool,
       onCreateOrder,
       onDeleteOrder,
       onLoadSchools,
@@ -37,11 +39,13 @@ class Orders extends React.Component {
           <Route
             exact
             path={match.path}
-            render={() => (
+            render={props => (
               <OrdersLanding
                 schools={schools}
                 onLoadSchools={onLoadSchools}
                 onCreateSchool={onCreateSchool}
+                onDeleteSchool={onDeleteSchool}
+                {...props}
               />
             )}
           />
@@ -65,6 +69,7 @@ class Orders extends React.Component {
 
 Orders.propTypes = {
   onCreateSchool: PropTypes.func.isRequired,
+  onDeleteSchool: PropTypes.func.isRequired,
   onCreateOrder: PropTypes.func.isRequired,
   onDeleteOrder: PropTypes.func.isRequired,
   onLoadSchools: PropTypes.func.isRequired,
@@ -82,6 +87,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLoadSchools: () => dispatch(loadSchools()),
   onCreateSchool: name => dispatch(createSchool(name)),
+  onDeleteSchool: id => dispatch(deleteSchool(id)),
   onCreateOrder: (id, order) => dispatch(createOrder(id, order)),
   onDeleteOrder: (id, data) => dispatch(deleteOrderFromCustomer(id, data)),
   onLoadSchool: id => dispatch(loadSchool(id))

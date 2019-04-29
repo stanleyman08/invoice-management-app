@@ -4,7 +4,8 @@ import {
   LOAD_SCHOOL_SUCCESS,
   CREATE_ORDER_SUCCESS,
   UPDATE_SCHOOL_SUCCESS,
-  DELETE_ORDER_SUCCESS
+  DELETE_ORDER_SUCCESS,
+  DELETE_SCHOOL_SUCCESS
 } from './actionType.js';
 
 import School from '../nedb/School.js';
@@ -64,6 +65,13 @@ export function deleteOrderSuccess(customer) {
   };
 }
 
+export function deleteSchoolSuccess(numDeleted) {
+  return {
+    type: DELETE_SCHOOL_SUCCESS,
+    payload: numDeleted
+  };
+}
+
 export function loadSchools() {
   return dispatch => {
     connect(URI)
@@ -85,6 +93,17 @@ export function createSchool(name) {
       })
       .then(school => {
         dispatch(createSchoolSuccess(school));
+        dispatch(loadSchools());
+      });
+  };
+}
+
+export function deleteSchool(id) {
+  return dispatch => {
+    connect(URI)
+      .then(() => School.findOneAndDelete({ _id: id }))
+      .then(numDeleted => {
+        dispatch(deleteSchoolSuccess(numDeleted));
         dispatch(loadSchools());
       });
   };
