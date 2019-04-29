@@ -4,6 +4,8 @@
 
 Work order and accounting management is an application specifically created for a catering company to manage their work orders.
 
+![Work Order App Screen](resources/WorkOrder_App.png)
+
 # Features
 
 - Data are stored locally on your computer
@@ -12,7 +14,9 @@ Work order and accounting management is an application specifically created for 
 ### Built with
 
 - Electron
-- React, React Router, React Hotloader
+- React, Redux, React Router, React Hotloader
+- Material UI
+- Nedb-camo
 - Webpack
 - yarn
 

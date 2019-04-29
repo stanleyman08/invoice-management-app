@@ -17,25 +17,187 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "host",
     "props": Object {
-      "children": Array [],
+      "children": <WithStyles(Component)
+        actions={
+          Array [
+            Object {
+              "icon": [Function],
+              "onClick": [Function],
+            },
+            Object {
+              "icon": [Function],
+              "onClick": [Function],
+            },
+          ]
+        }
+        columns={
+          Array [
+            Object {
+              "field": "name",
+              "title": "Name",
+            },
+          ]
+        }
+        data={Array []}
+        icons={
+          Object {
+            "FirstPage": [Function],
+            "LastPage": [Function],
+            "NextPage": [Function],
+            "PreviousPage": [Function],
+            "ResetSearch": [Function],
+            "Search": [Function],
+          }
+        }
+        onRowClick={[Function]}
+        options={
+          Object {
+            "actionsColumnIndex": -1,
+            "showTitle": false,
+          }
+        }
+      />,
+      "style": Object {
+        "maxWidth": "100%",
+      },
     },
     "ref": null,
-    "rendered": Array [],
-    "type": [Function],
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "actions": Array [
+          Object {
+            "icon": [Function],
+            "onClick": [Function],
+          },
+          Object {
+            "icon": [Function],
+            "onClick": [Function],
+          },
+        ],
+        "columns": Array [
+          Object {
+            "field": "name",
+            "title": "Name",
+          },
+        ],
+        "data": Array [],
+        "icons": Object {
+          "FirstPage": [Function],
+          "LastPage": [Function],
+          "NextPage": [Function],
+          "PreviousPage": [Function],
+          "ResetSearch": [Function],
+          "Search": [Function],
+        },
+        "onRowClick": [Function],
+        "options": Object {
+          "actionsColumnIndex": -1,
+          "showTitle": false,
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "host",
       "props": Object {
-        "children": Array [],
+        "children": <WithStyles(Component)
+          actions={
+            Array [
+              Object {
+                "icon": [Function],
+                "onClick": [Function],
+              },
+              Object {
+                "icon": [Function],
+                "onClick": [Function],
+              },
+            ]
+          }
+          columns={
+            Array [
+              Object {
+                "field": "name",
+                "title": "Name",
+              },
+            ]
+          }
+          data={Array []}
+          icons={
+            Object {
+              "FirstPage": [Function],
+              "LastPage": [Function],
+              "NextPage": [Function],
+              "PreviousPage": [Function],
+              "ResetSearch": [Function],
+              "Search": [Function],
+            }
+          }
+          onRowClick={[Function]}
+          options={
+            Object {
+              "actionsColumnIndex": -1,
+              "showTitle": false,
+            }
+          }
+        />,
+        "style": Object {
+          "maxWidth": "100%",
+        },
       },
       "ref": null,
-      "rendered": Array [],
-      "type": [Function],
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "actions": Array [
+            Object {
+              "icon": [Function],
+              "onClick": [Function],
+            },
+            Object {
+              "icon": [Function],
+              "onClick": [Function],
+            },
+          ],
+          "columns": Array [
+            Object {
+              "field": "name",
+              "title": "Name",
+            },
+          ],
+          "data": Array [],
+          "icons": Object {
+            "FirstPage": [Function],
+            "LastPage": [Function],
+            "NextPage": [Function],
+            "PreviousPage": [Function],
+            "ResetSearch": [Function],
+            "Search": [Function],
+          },
+          "onRowClick": [Function],
+          "options": Object {
+            "actionsColumnIndex": -1,
+            "showTitle": false,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
