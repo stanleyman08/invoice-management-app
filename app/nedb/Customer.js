@@ -62,6 +62,11 @@ class Customer extends Document {
       })
     );
   }
+
+  static getTotalOrdersCount() {
+    const day1 = Customer.find({ 'orders.day1': 'a' });
+    return day1;
+  }
 }
 
 export default Customer;

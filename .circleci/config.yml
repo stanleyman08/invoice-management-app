@@ -20,9 +20,9 @@ jobs:
       - run:
           name: Build electron app
           command: yarn build
-      - run:
-          name: Run electron test and coverage
-          command: yarn test && yarn test-coverage
+      # - run:
+      #     name: Run electron test and coverage
+      #     command: yarn test && yarn test-coverage
       # - run:
       #     name: Run eslint
       #     command: yarn lint
