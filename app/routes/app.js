@@ -1,7 +1,7 @@
 import Orders from '../views/Orders/Orders.js';
 import Home from '../views/Home/Home.js';
 import Customers from '../views/Customers/Customers.js';
-import Reports from '../views/Reports/Reports.js';
+import OrdersSummary from '../views/Summary/OrdersSummary.js';
 
 const appRoutes = [
   {
@@ -20,9 +20,9 @@ const appRoutes = [
     component: Orders
   },
   {
-    path: '/app/reports',
-    sidebarName: 'Reports',
-    component: Reports
+    path: '/app/summary',
+    sidebarName: 'Orders Summary',
+    component: OrdersSummary
   },
   { redirect: true, path: '/app', to: '/app/home', navbarName: 'Redirect' }
 ];

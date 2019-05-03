@@ -9,9 +9,9 @@ import CardHeader from '../../components/Card/CardHeader.js';
 import CardBody from '../../components/Card/CardBody.js';
 import CardFooter from '../../components/Card/CardFooter.js';
 
-import ReportList from '../../components/List/ReportList.js';
+import SummaryList from '../../components/List/SummaryList.js';
 
-import { loadReports } from '../../actions/reportAction.js';
+import { loadSummary } from '../../actions/summaryAction.js';
 
 const styles = {
   cardCategoryWhite: {
@@ -32,21 +32,21 @@ const styles = {
   }
 };
 
-class Reports extends React.Component {
+class OrdersSummary extends React.Component {
   componentDidMount() {
-    const { onLoadReports } = this.props;
-    onLoadReports();
+    const { onLoadSummary } = this.props;
+    onLoadSummary();
   }
 
   render() {
-    const { classes, reports } = this.props;
+    const { classes, summary } = this.props;
     return (
       <Card>
         <CardHeader color="primary">
           <h4 className={classes.cardTitleWhite}>Reports</h4>
         </CardHeader>
         <CardBody>
-          <ReportList reports={reports} />
+          <SummaryList summary={summary} />
         </CardBody>
         <CardFooter />
       </Card>
@@ -54,21 +54,21 @@ class Reports extends React.Component {
   }
 }
 
-Reports.propTypes = {
+OrdersSummary.propTypes = {
   classes: PropTypes.object.isRequired,
-  reports: PropTypes.object.isRequired,
-  onLoadReports: PropTypes.func.isRequired
+  summary: PropTypes.arrayOf(Object).isRequired,
+  onLoadSummary: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  reports: state.reportReducer.reports
+  summary: state.summaryReducer.summary
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoadReports: () => dispatch(loadReports())
+  onLoadSummary: () => dispatch(loadSummary())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Reports));
+)(withStyles(styles)(OrdersSummary));

@@ -1,6 +1,6 @@
 # Work Order and Accounting Management
 
-[![CircleCI](https://circleci.com/gh/stanleyman08/workorder-and-accounting-app.svg?style=svg)](https://circleci.com/gh/stanleyman08/workorder-and-accounting-app)
+[![CircleCI](https://circleci.com/gh/stanleyman08/invoice-management-app.svg?style=svg)](https://circleci.com/gh/stanleyman08/invoice-management-app)
 
 Work order and accounting management is an application specifically created for a catering company to manage their work orders.
 

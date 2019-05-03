@@ -141,6 +141,7 @@ export function createOrder(id, order) {
         const customer = Customer.create({
           customerName: order.customerName
         });
+        console.log(order);
         customer.ordersData = order;
         return customer.save();
       })
