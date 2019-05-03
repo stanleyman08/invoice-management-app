@@ -1,7 +1,7 @@
 import { juiceFruits, orderChoices } from '../utils/utils.js';
 
-const Document = require('camo').Document;
-const EmbeddedDocument = require('camo').EmbeddedDocument;
+const { Document } = require('camo');
+const { EmbeddedDocument } = require('camo');
 
 class Order extends EmbeddedDocument {
   constructor() {

@@ -9,6 +9,8 @@ import LastPage from '@material-ui/icons/LastPage';
 import NextPage from '@material-ui/icons/ChevronRight';
 import PreviousPage from '@material-ui/icons/ChevronLeft';
 import Delete from '@material-ui/icons/DeleteOutline';
+import Clear from '@material-ui/icons/Clear';
+import Check from '@material-ui/icons/Check';
 
 const OrderList = ({ schoolId, orders, deleteOrder }) => (
   <div style={{ maxWidth: '100%' }}>
@@ -25,14 +27,15 @@ const OrderList = ({ schoolId, orders, deleteOrder }) => (
         { title: 'juiceFruits', field: 'juiceFruits' }
       ]}
       data={orders}
-      actions={[
-        {
-          icon: Delete,
-          tooltip: 'Delete Order',
-          onClick: (event, rowData) => deleteOrder(schoolId, rowData)
-          // onClick: (event, rowData) => console.log(rowData)
-        }
-      ]}
+      editable={{
+        onRowDelete: oldData =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              deleteOrder(schoolId, oldData);
+              resolve();
+            }, 1000);
+          })
+      }}
       options={{
         showTitle: false,
         actionsColumnIndex: -1
@@ -43,7 +46,10 @@ const OrderList = ({ schoolId, orders, deleteOrder }) => (
         FirstPage,
         LastPage,
         NextPage,
-        PreviousPage
+        PreviousPage,
+        Delete,
+        Clear,
+        Check
       }}
     />
   </div>

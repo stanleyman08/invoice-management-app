@@ -10,7 +10,6 @@ import CardBody from '../../components/Card/CardBody.js';
 import CardFooter from '../../components/Card/CardFooter.js';
 
 import SchoolForm from '../../components/Form/SchoolForm.js';
-import EditSchoolForm from '../../components/Form/EditSchoolForm'; // todo
 import SchoolList from '../../components/List/SchoolList.js';
 
 const styles = {
@@ -36,8 +35,7 @@ class OrdersLanding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openSchoolForm: false,
-      openEditSchoolForm: false
+      openSchoolForm: false
     };
   }
 
@@ -45,18 +43,8 @@ class OrdersLanding extends React.Component {
     this.setState({ openSchoolForm: true });
   };
 
-  // todo
-  handleEditClickOpen = () => {
-    this.setState({ openEditSchoolForm: true });
-  };
-
   handleClose = () => {
     this.setState({ openSchoolForm: false });
-  };
-
-  // todo
-  handleEditClose = () => {
-    this.setState({ openEditSchoolForm: false });
   };
 
   render() {
@@ -67,7 +55,7 @@ class OrdersLanding extends React.Component {
       onDeleteSchool,
       onLoadSchools
     } = this.props;
-    const { openEditSchoolForm, openSchoolForm } = this.state;
+    const { openSchoolForm } = this.state;
     return (
       <Card>
         <CardHeader color="primary">
@@ -79,10 +67,6 @@ class OrdersLanding extends React.Component {
             deleteSchool={onDeleteSchool}
             onHandleEditClickOpen={this.handleEditClickOpen}
             {...this.props}
-          />
-          <EditSchoolForm
-            openEditSchoolForm={openEditSchoolForm}
-            onHandleEditClose={this.handleEditClose}
           />
         </CardBody>
         <CardFooter>

@@ -4,33 +4,41 @@ import PropTypes from 'prop-types';
 import MaterialTable from 'material-table';
 import Search from '@material-ui/icons/Search';
 import ResetSearch from '@material-ui/icons/Clear';
+import Clear from '@material-ui/icons/Clear';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import NextPage from '@material-ui/icons/ChevronRight';
 import PreviousPage from '@material-ui/icons/ChevronLeft';
 import Delete from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
+import Check from '@material-ui/icons/Check';
+import ThirdStateCheck from '@material-ui/icons/Remove';
 
 const SchoolList = ({
   schools,
   deleteSchool,
-  onHandleEditClickOpen,
   history
 }) => (
   <div style={{ maxWidth: '100%' }}>
     <MaterialTable
       columns={[{ title: 'Name', field: 'name' }]}
       data={schools}
-      actions={[
-        {
-          icon: Edit,
-          onClick: (event, rowData) => onHandleEditClickOpen(rowData.name)
-        },
-        {
-          icon: Delete,
-          onClick: (event, rowData) => deleteSchool(rowData._id)
-        }
-      ]}
+      editable={{
+        onRowUpdate: (newData, oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              console.log('edit');
+              resolve();
+            }, 1000);
+          }),
+        onRowDelete: oldData =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              deleteSchool(oldData._id);
+              resolve();
+            }, 1000);
+          })
+      }}
       onRowClick={(event, selectedRow) =>
         history.push(`/app/orders/${selectedRow._id}`)
       }
@@ -44,7 +52,12 @@ const SchoolList = ({
         FirstPage,
         LastPage,
         NextPage,
-        PreviousPage
+        PreviousPage,
+        Delete,
+        Check,
+        ThirdStateCheck,
+        Clear,
+        Edit
       }}
     />
   </div>
@@ -53,7 +66,6 @@ const SchoolList = ({
 SchoolList.propTypes = {
   schools: PropTypes.arrayOf(Object).isRequired,
   deleteSchool: PropTypes.func.isRequired,
-  onHandleEditClickOpen: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 

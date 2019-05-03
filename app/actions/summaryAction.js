@@ -2,11 +2,11 @@ import { LOAD_SUMMARY_SUCCESS } from './actionType.js';
 
 import Customer from '../nedb/Customer.js';
 
-const connect = require('camo').connect;
+const { connect } = require('camo');
 
-const remote = require('electron').remote;
+const { remote } = require('electron');
 
-const app = remote.app;
+const { app } = remote;
 
 // Tells nedb that it is using persistent storage.
 // The local file is located in app.getPath('userData')}/data

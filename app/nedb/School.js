@@ -1,6 +1,6 @@
 import Customer from './Customer.js';
 
-const Document = require('camo').Document;
+const { Document } = require('camo');
 
 class School extends Document {
   constructor() {
