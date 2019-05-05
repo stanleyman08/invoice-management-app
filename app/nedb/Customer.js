@@ -32,7 +32,23 @@ class Order extends EmbeddedDocument {
       type: String,
       choices: ['', 'a', 'b', 'ma', 'mb', 'la', 'lb']
     };
-    this.juiceFruits = {
+    this.day1JuiceFruits = {
+      type: String,
+      choices: ['', 'no', 'nod', 'nof']
+    };
+    this.day2JuiceFruits = {
+      type: String,
+      choices: ['', 'no', 'nod', 'nof']
+    };
+    this.day3JuiceFruits = {
+      type: String,
+      choices: ['', 'no', 'nod', 'nof']
+    };
+    this.day4JuiceFruits = {
+      type: String,
+      choices: ['', 'no', 'nod', 'nof']
+    };
+    this.day5JuiceFruits = {
       type: String,
       choices: ['', 'no', 'nod', 'nof']
     };
@@ -58,7 +74,11 @@ class Customer extends Document {
         day3: orderChoices(order.size, order.day3),
         day4: orderChoices(order.size, order.day4),
         day5: orderChoices(order.size, order.day5),
-        juiceFruits: juiceFruits(order.juice, order.fruits)
+        day1JuiceFruits: juiceFruits(order.day1Juice, order.day1Fruits),
+        day2JuiceFruits: juiceFruits(order.day2Juice, order.day2Fruits),
+        day3JuiceFruits: juiceFruits(order.day3Juice, order.day3Fruits),
+        day4JuiceFruits: juiceFruits(order.day4Juice, order.day4Fruits),
+        day5JuiceFruits: juiceFruits(order.day5Juice, order.day5Fruits)
       })
     );
   }

@@ -23,8 +23,7 @@ const OrderList = ({ schoolId, orders, deleteOrder }) => (
         { title: 'Day2', field: 'day2' },
         { title: 'Day3', field: 'day3' },
         { title: 'Day4', field: 'day4' },
-        { title: 'Day5', field: 'day5' },
-        { title: 'juiceFruits', field: 'juiceFruits' }
+        { title: 'Day5', field: 'day5' }
       ]}
       data={orders}
       editable={{

@@ -27,6 +27,14 @@
       "id": "electron-updater",
       "buildMeta": { "providedExports": true }
     },
+    "final-form": {
+      "id": "final-form",
+      "buildMeta": { "providedExports": true }
+    },
+    "final-form-material-ui": {
+      "id": "final-form-material-ui",
+      "buildMeta": { "providedExports": true }
+    },
     "history": { "id": "history", "buildMeta": { "providedExports": true } },
     "material-table": {
       "id": "material-table",
@@ -36,6 +44,10 @@
     "react": { "id": "react", "buildMeta": { "providedExports": true } },
     "react-dom": {
       "id": "react-dom",
+      "buildMeta": { "providedExports": true }
+    },
+    "react-final-form": {
+      "id": "react-final-form",
       "buildMeta": { "providedExports": true }
     },
     "react-hot-loader": {

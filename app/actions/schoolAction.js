@@ -141,7 +141,6 @@ export function createOrder(id, order) {
         const customer = Customer.create({
           customerName: order.customerName
         });
-        console.log(order);
         customer.ordersData = order;
         return customer.save();
       })
@@ -165,7 +164,11 @@ export function deleteOrderFromCustomer(id, data) {
           'orders.day3': data.day3,
           'orders.day4': data.day4,
           'orders.day5': data.day5,
-          'orders.juiceFruits': data.juiceFruits
+          'orders.day1JuiceFruits': data.day1JuiceFruits,
+          'orders.day2JuiceFruits': data.day2JuiceFruits,
+          'orders.day3JuiceFruits': data.day3JuiceFruits,
+          'orders.day4JuiceFruits': data.day4JuiceFruits,
+          'orders.day5JuiceFruits': data.day5JuiceFruits
         })
       )
       .then(customer => {
