@@ -1,6 +1,10 @@
 {
   "name": "renderer",
   "content": {
+    "@date-io/date-fns": {
+      "id": "@date-io/date-fns",
+      "buildMeta": { "providedExports": true }
+    },
     "@fortawesome/fontawesome-free": {
       "id": "@fortawesome/fontawesome-free",
       "buildMeta": { "providedExports": true }
@@ -14,6 +18,7 @@
       "buildMeta": { "providedExports": true }
     },
     "camo": { "id": "camo", "buildMeta": { "providedExports": true } },
+    "date-fns": { "id": "date-fns", "buildMeta": { "providedExports": true } },
     "devtron": { "id": "devtron", "buildMeta": { "providedExports": true } },
     "electron-debug": {
       "id": "electron-debug",
@@ -27,15 +32,31 @@
       "id": "electron-updater",
       "buildMeta": { "providedExports": true }
     },
+    "final-form": {
+      "id": "final-form",
+      "buildMeta": { "providedExports": true }
+    },
+    "final-form-material-ui": {
+      "id": "final-form-material-ui",
+      "buildMeta": { "providedExports": true }
+    },
     "history": { "id": "history", "buildMeta": { "providedExports": true } },
     "material-table": {
       "id": "material-table",
+      "buildMeta": { "providedExports": true }
+    },
+    "material-ui-pickers": {
+      "id": "material-ui-pickers",
       "buildMeta": { "providedExports": true }
     },
     "nedb": { "id": "nedb", "buildMeta": { "providedExports": true } },
     "react": { "id": "react", "buildMeta": { "providedExports": true } },
     "react-dom": {
       "id": "react-dom",
+      "buildMeta": { "providedExports": true }
+    },
+    "react-final-form": {
+      "id": "react-final-form",
       "buildMeta": { "providedExports": true }
     },
     "react-hot-loader": {

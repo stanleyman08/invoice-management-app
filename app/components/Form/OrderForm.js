@@ -1,224 +1,425 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Field } from 'react-final-form';
+import { TextField, Checkbox, Radio, Select } from 'final-form-material-ui';
+
+// Required for DatePicker
+import { DatePicker } from 'material-ui-pickers';
+import format from 'date-fns/format';
+import isValid from 'date-fns/isValid';
+import startOfWeek from 'date-fns/startOfWeek';
 
 // @material-ui/core components
+import withStyles from '@material-ui/core/styles/withStyles';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 // core components
 import Button from '../CustomButtons/Button.js';
+
+const styles = {
+  root: {
+    height: '30px'
+  }
+};
 
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerName: '',
-      orderName: '',
-      div: '',
-      size: '',
-      day1: '',
-      day2: '',
-      day3: '',
-      day4: '',
-      day5: '',
-      juice: true,
-      fruits: true
+      selectedDate: new Date()
     };
   }
 
-  clearInput = () => {
-    this.setState({
-      customerName: '',
-      orderName: '',
-      div: '',
-      size: '',
-      day1: '',
-      day2: '',
-      day3: '',
-      day4: '',
-      day5: '',
-      juice: true,
-      fruits: true
-    });
+  handleWeekChange = date => {
+    this.setState({ selectedDate: startOfWeek(date) });
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
+  formatWeekSelectLabel = (date, invalidLabel) =>
+    date && isValid(date)
+      ? `Week of ${format(startOfWeek(date), 'MMM do')}`
+      : invalidLabel;
 
-  handleCheckbox = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  handleAdd = () => {
-    const { onHandleClose, createOrder, schoolId } = this.props;
-    const {
-      customerName,
-      orderName,
-      div,
-      size,
-      day1,
-      day2,
-      day3,
-      day4,
-      day5,
-      juice,
-      fruits
-    } = this.state;
-    createOrder(schoolId, {
-      customerName,
-      orderName,
-      div,
-      size,
-      day1,
-      day2,
-      day3,
-      day4,
-      day5,
-      juice,
-      fruits
-    });
-    onHandleClose();
-    this.clearInput();
-  };
-  //
-
-  handleCancel = () => {
-    const { onHandleClose } = this.props;
+  onSubmit = values => {
+    const { selectedDate } = this.state;
+    const { schoolId, createOrder, onHandleClose } = this.props;
+    createOrder(schoolId, selectedDate, values);
     onHandleClose();
   };
 
   render() {
+    const { selectedDate } = this.state;
+    const { openOrderForm, onHandleClose, classes } = this.props;
     return (
       <Dialog
-        open={this.props.openOrderForm}
-        onClose={this.props.onHandleClose}
+        maxWidth="xs"
+        disableEnforceFocus
+        open={openOrderForm}
+        onClose={onHandleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Add</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add Order</DialogTitle>
         <DialogContent>
-          <DialogContentText>Input Order forms</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="customerName"
-            value={this.state.customerName}
-            onChange={this.handleChange('customerName')}
-            label="Customer Name"
-            type="text"
-            fullWidth
-          >
-            {' '}
-          </TextField>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="orderName"
-            value={this.state.orderName}
-            onChange={this.handleChange('orderName')}
-            label="Order Name"
-            type="text"
-            fullWidth
-          >
-            {' '}
-          </TextField>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="div"
-            value={this.state.div}
-            onChange={this.handleChange('div')}
-            label="Div/Room"
-            type="text"
-            fullWidth
-          >
-            {' '}
-          </TextField>
-          Size:
-          <Select value={this.state.size} onChange={this.handleChange('size')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="regular">Regular</MenuItem>
-            <MenuItem value="medium">Medium</MenuItem>
-            <MenuItem value="large">Large</MenuItem>
-          </Select>
-          Day1:
-          <Select value={this.state.day1} onChange={this.handleChange('day1')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="a">A</MenuItem>
-            <MenuItem value="b">B</MenuItem>
-          </Select>
-          Day2:
-          <Select value={this.state.day2} onChange={this.handleChange('day2')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="a">A</MenuItem>
-            <MenuItem value="b">B</MenuItem>
-          </Select>
-          Day3:
-          <Select value={this.state.day3} onChange={this.handleChange('day3')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="a">A</MenuItem>
-            <MenuItem value="b">B</MenuItem>
-          </Select>
-          Day4:
-          <Select value={this.state.day4} onChange={this.handleChange('day4')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="a">A</MenuItem>
-            <MenuItem value="b">B</MenuItem>
-          </Select>
-          Day5:
-          <Select value={this.state.day5} onChange={this.handleChange('day5')}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="a">A</MenuItem>
-            <MenuItem value="b">B</MenuItem>
-          </Select>
-          <Checkbox
-            checked={this.state.juice}
-            onChange={this.handleCheckbox('juice')}
-            value="juice"
+          <Form
+            onSubmit={this.onSubmit}
+            initialValues={{
+              size: '',
+              day1: '',
+              day2: '',
+              day3: '',
+              day4: '',
+              day5: '',
+              day1Juice: true,
+              day2Juice: true,
+              day3Juice: true,
+              day4Juice: true,
+              day5Juice: true,
+              day1Fruits: true,
+              day2Fruits: true,
+              day3Fruits: true,
+              day4Fruits: true,
+              day5Fruits: true
+            }}
+            render={({ handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                <Grid container alignItems="flex-start" spacing={8}>
+                  <Grid item xs={12}>
+                    <Field
+                      fullWidth
+                      name="customerName"
+                      component={TextField}
+                      type="text"
+                      label="Customer Name"
+                    />
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Field
+                      fullWidth
+                      name="orderName"
+                      component={TextField}
+                      type="text"
+                      label="Order Name"
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Field
+                      fullWidth
+                      name="div"
+                      component={TextField}
+                      type="text"
+                      label="Div"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <DatePicker
+                      value={selectedDate}
+                      onChange={this.handleWeekChange}
+                      labelFunc={this.formatWeekSelectLabel}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Field
+                      name="size"
+                      component={Select}
+                      label="Size"
+                      formControlProps={{ fullWidth: true }}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="regular">Regular</MenuItem>
+                      <MenuItem value="medium">Medium</MenuItem>
+                      <MenuItem value="large">Large</MenuItem>
+                    </Field>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Day1</FormLabel>
+                      <RadioGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="A"
+                          control={
+                            <Field
+                              name="day1"
+                              component={Radio}
+                              type="radio"
+                              value="a"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="B"
+                          control={
+                            <Field
+                              name="day1"
+                              component={Radio}
+                              type="radio"
+                              value="b"
+                            />
+                          }
+                        />
+                      </RadioGroup>
+                      <FormGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="Juice"
+                          control={
+                            <Field
+                              name="day1Juice"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="Fruits"
+                          control={
+                            <Field
+                              name="day1Fruits"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Day2</FormLabel>
+                      <RadioGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="A"
+                          control={
+                            <Field
+                              name="day2"
+                              component={Radio}
+                              type="radio"
+                              value="a"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="B"
+                          control={
+                            <Field
+                              name="day2"
+                              component={Radio}
+                              type="radio"
+                              value="b"
+                            />
+                          }
+                        />
+                      </RadioGroup>
+                      <FormGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="Juice"
+                          control={
+                            <Field
+                              name="day2Juice"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="Fruits"
+                          control={
+                            <Field
+                              name="day2Fruits"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Day3</FormLabel>
+                      <RadioGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="A"
+                          control={
+                            <Field
+                              name="day3"
+                              component={Radio}
+                              type="radio"
+                              value="a"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="B"
+                          control={
+                            <Field
+                              name="day3"
+                              component={Radio}
+                              type="radio"
+                              value="b"
+                            />
+                          }
+                        />
+                      </RadioGroup>
+                      <FormGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="Juice"
+                          control={
+                            <Field
+                              name="day3Juice"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="Fruits"
+                          control={
+                            <Field
+                              name="day3Fruits"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Day4</FormLabel>
+                      <RadioGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="A"
+                          control={
+                            <Field
+                              name="day4"
+                              component={Radio}
+                              type="radio"
+                              value="a"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="B"
+                          control={
+                            <Field
+                              name="day4"
+                              component={Radio}
+                              type="radio"
+                              value="b"
+                            />
+                          }
+                        />
+                      </RadioGroup>
+                      <FormGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="Juice"
+                          control={
+                            <Field
+                              name="day4Juice"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="Fruits"
+                          control={
+                            <Field
+                              name="day4Fruits"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">Day5</FormLabel>
+                      <RadioGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="A"
+                          control={
+                            <Field
+                              name="day5"
+                              component={Radio}
+                              type="radio"
+                              value="a"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="B"
+                          control={
+                            <Field
+                              name="day5"
+                              component={Radio}
+                              type="radio"
+                              value="b"
+                            />
+                          }
+                        />
+                      </RadioGroup>
+                      <FormGroup className={classes.root} row>
+                        <FormControlLabel
+                          label="Juice"
+                          control={
+                            <Field
+                              name="day5Juice"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                        <FormControlLabel
+                          label="Fruits"
+                          control={
+                            <Field
+                              name="day5Fruits"
+                              component={Checkbox}
+                              type="checkbox"
+                            />
+                          }
+                        />
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item>
+                    <Button onClick={onHandleClose}>Cancel</Button>
+                  </Grid>
+                  <Grid item>
+                    <Button color="primary" type="submit">
+                      Add
+                    </Button>
+                  </Grid>
+                </Grid>
+              </form>
+            )}
           />
-          juice
-          <Checkbox
-            checked={this.state.fruits}
-            onChange={this.handleCheckbox('fruits')}
-            value="fruits"
-          />
-          fruits
         </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleCancel}>Cancel</Button>
-          <Button onClick={this.handleAdd} color="primary">
-            Add
-          </Button>
-        </DialogActions>
       </Dialog>
     );
   }
 }
 
 OrderForm.propTypes = {
+  classes: PropTypes.object.isRequired,
   createOrder: PropTypes.func.isRequired,
   onHandleClose: PropTypes.func.isRequired,
   openOrderForm: PropTypes.bool.isRequired,
   schoolId: PropTypes.string.isRequired
 };
 
-export default OrderForm;
+export default withStyles(styles)(OrderForm);

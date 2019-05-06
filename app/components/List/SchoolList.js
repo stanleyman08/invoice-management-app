@@ -14,11 +14,7 @@ import Edit from '@material-ui/icons/Edit';
 import Check from '@material-ui/icons/Check';
 import ThirdStateCheck from '@material-ui/icons/Remove';
 
-const SchoolList = ({
-  schools,
-  deleteSchool,
-  history
-}) => (
+const SchoolList = ({ schools, deleteSchool, history }) => (
   <div style={{ maxWidth: '100%' }}>
     <MaterialTable
       columns={[{ title: 'Name', field: 'name' }]}
