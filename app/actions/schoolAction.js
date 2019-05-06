@@ -134,14 +134,14 @@ export function updateSchoolCustomer(id, customer) {
   };
 }
 
-export function createOrder(id, order) {
+export function createOrder(id, date, order) {
   return dispatch => {
     connect(URI)
       .then(() => {
         const customer = Customer.create({
           customerName: order.customerName
         });
-        customer.ordersData = order;
+        customer.ordersData = { date, order };
         return customer.save();
       })
       .then(customer => {

@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import { TextField, Checkbox, Radio, Select } from 'final-form-material-ui';
 
+// Required for DatePicker
+import { DatePicker } from 'material-ui-pickers';
+import format from 'date-fns/format';
+import isValid from 'date-fns/isValid';
+import startOfWeek from 'date-fns/startOfWeek';
+
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
+import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -26,13 +33,31 @@ const styles = {
 };
 
 class OrderForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDate: new Date()
+    };
+  }
+
+  handleWeekChange = date => {
+    this.setState({ selectedDate: startOfWeek(date) });
+  };
+
+  formatWeekSelectLabel = (date, invalidLabel) =>
+    date && isValid(date)
+      ? `Week of ${format(startOfWeek(date), 'MMM do')}`
+      : invalidLabel;
+
   onSubmit = values => {
+    const { selectedDate } = this.state;
     const { schoolId, createOrder, onHandleClose } = this.props;
-    createOrder(schoolId, values);
+    createOrder(schoolId, selectedDate, values);
     onHandleClose();
   };
 
   render() {
+    const { selectedDate } = this.state;
     const { openOrderForm, onHandleClose, classes } = this.props;
     return (
       <Dialog
@@ -92,6 +117,13 @@ class OrderForm extends React.Component {
                       component={TextField}
                       type="text"
                       label="Div"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <DatePicker
+                      value={selectedDate}
+                      onChange={this.handleWeekChange}
+                      labelFunc={this.formatWeekSelectLabel}
                     />
                   </Grid>
                   <Grid item xs={6}>

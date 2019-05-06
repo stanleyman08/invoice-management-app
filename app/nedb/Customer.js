@@ -6,6 +6,7 @@ const { EmbeddedDocument } = require('camo');
 class Order extends EmbeddedDocument {
   constructor() {
     super();
+    this.date = Date;
     this.orderName = String;
     this.div = String;
     this.size = {
@@ -63,22 +64,38 @@ class Customer extends Document {
     this.orders = [Order];
   }
 
-  set ordersData(order) {
+  set ordersData(data) {
     this.orders.push(
       Order.create({
-        orderName: order.orderName,
-        div: order.div,
-        size: order.size,
-        day1: orderChoices(order.size, order.day1),
-        day2: orderChoices(order.size, order.day2),
-        day3: orderChoices(order.size, order.day3),
-        day4: orderChoices(order.size, order.day4),
-        day5: orderChoices(order.size, order.day5),
-        day1JuiceFruits: juiceFruits(order.day1Juice, order.day1Fruits),
-        day2JuiceFruits: juiceFruits(order.day2Juice, order.day2Fruits),
-        day3JuiceFruits: juiceFruits(order.day3Juice, order.day3Fruits),
-        day4JuiceFruits: juiceFruits(order.day4Juice, order.day4Fruits),
-        day5JuiceFruits: juiceFruits(order.day5Juice, order.day5Fruits)
+        date: data.date.toDateString(),
+        orderName: data.order.orderName,
+        div: data.order.div,
+        size: data.order.size,
+        day1: orderChoices(data.order.size, data.order.day1),
+        day2: orderChoices(data.order.size, data.order.day2),
+        day3: orderChoices(data.order.size, data.order.day3),
+        day4: orderChoices(data.order.size, data.order.day4),
+        day5: orderChoices(data.order.size, data.order.day5),
+        day1JuiceFruits: juiceFruits(
+          data.order.day1Juice,
+          data.order.day1Fruits
+        ),
+        day2JuiceFruits: juiceFruits(
+          data.order.day2Juice,
+          data.order.day2Fruits
+        ),
+        day3JuiceFruits: juiceFruits(
+          data.order.day3Juice,
+          data.order.day3Fruits
+        ),
+        day4JuiceFruits: juiceFruits(
+          data.order.day4Juice,
+          data.order.day4Fruits
+        ),
+        day5JuiceFruits: juiceFruits(
+          data.order.day5Juice,
+          data.order.day5Fruits
+        )
       })
     );
   }

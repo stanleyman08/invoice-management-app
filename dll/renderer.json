@@ -1,6 +1,10 @@
 {
   "name": "renderer",
   "content": {
+    "@date-io/date-fns": {
+      "id": "@date-io/date-fns",
+      "buildMeta": { "providedExports": true }
+    },
     "@fortawesome/fontawesome-free": {
       "id": "@fortawesome/fontawesome-free",
       "buildMeta": { "providedExports": true }
@@ -14,6 +18,7 @@
       "buildMeta": { "providedExports": true }
     },
     "camo": { "id": "camo", "buildMeta": { "providedExports": true } },
+    "date-fns": { "id": "date-fns", "buildMeta": { "providedExports": true } },
     "devtron": { "id": "devtron", "buildMeta": { "providedExports": true } },
     "electron-debug": {
       "id": "electron-debug",
@@ -38,6 +43,10 @@
     "history": { "id": "history", "buildMeta": { "providedExports": true } },
     "material-table": {
       "id": "material-table",
+      "buildMeta": { "providedExports": true }
+    },
+    "material-ui-pickers": {
+      "id": "material-ui-pickers",
       "buildMeta": { "providedExports": true }
     },
     "nedb": { "id": "nedb", "buildMeta": { "providedExports": true } },

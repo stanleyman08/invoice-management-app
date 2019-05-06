@@ -99,6 +99,18 @@ eval("module.exports = __webpack_require__;\n\n//# sourceURL=webpack://renderer/
 
 /***/ }),
 
+/***/ "@date-io/date-fns":
+/*!************************************!*\
+  !*** external "@date-io/date-fns" ***!
+  \************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = @date-io/date-fns;\n\n//# sourceURL=webpack://renderer/external_%22@date-io/date-fns%22?");
+
+/***/ }),
+
 /***/ "@fortawesome/fontawesome-free":
 /*!************************************************!*\
   !*** external "@fortawesome/fontawesome-free" ***!
@@ -144,6 +156,18 @@ eval("module.exports = @material-ui/icons;\n\n//# sourceURL=webpack://renderer/e
 /***/ (function(module, exports) {
 
 eval("module.exports = camo;\n\n//# sourceURL=webpack://renderer/external_%22camo%22?");
+
+/***/ }),
+
+/***/ "date-fns":
+/*!***************************!*\
+  !*** external "date-fns" ***!
+  \***************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = date-fns;\n\n//# sourceURL=webpack://renderer/external_%22date-fns%22?");
 
 /***/ }),
 
@@ -240,6 +264,18 @@ eval("module.exports = history;\n\n//# sourceURL=webpack://renderer/external_%22
 /***/ (function(module, exports) {
 
 eval("module.exports = material-table;\n\n//# sourceURL=webpack://renderer/external_%22material-table%22?");
+
+/***/ }),
+
+/***/ "material-ui-pickers":
+/*!**************************************!*\
+  !*** external "material-ui-pickers" ***!
+  \**************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = material-ui-pickers;\n\n//# sourceURL=webpack://renderer/external_%22material-ui-pickers%22?");
 
 /***/ }),
 

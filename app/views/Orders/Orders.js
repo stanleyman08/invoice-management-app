@@ -88,7 +88,7 @@ const mapDispatchToProps = dispatch => ({
   onLoadSchools: () => dispatch(loadSchools()),
   onCreateSchool: name => dispatch(createSchool(name)),
   onDeleteSchool: id => dispatch(deleteSchool(id)),
-  onCreateOrder: (id, order) => dispatch(createOrder(id, order)),
+  onCreateOrder: (id, date, order) => dispatch(createOrder(id, date, order)),
   onDeleteOrder: (id, data) => dispatch(deleteOrderFromCustomer(id, data)),
   onLoadSchool: id => dispatch(loadSchool(id))
 });
