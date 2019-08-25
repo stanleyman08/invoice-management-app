@@ -147,6 +147,18 @@ eval("module.exports = @material-ui/icons;\n\n//# sourceURL=webpack://renderer/e
 
 /***/ }),
 
+/***/ "@material-ui/styles":
+/*!**************************************!*\
+  !*** external "@material-ui/styles" ***!
+  \**************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = @material-ui/styles;\n\n//# sourceURL=webpack://renderer/external_%22@material-ui/styles%22?");
+
+/***/ }),
+
 /***/ "camo":
 /*!***********************!*\
   !*** external "camo" ***!

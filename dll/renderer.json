@@ -1,10 +1,7 @@
 {
   "name": "renderer",
   "content": {
-    "@date-io/date-fns": {
-      "id": "@date-io/date-fns",
-      "buildMeta": { "providedExports": true }
-    },
+    "history": { "id": "history", "buildMeta": { "providedExports": true } },
     "@fortawesome/fontawesome-free": {
       "id": "@fortawesome/fontawesome-free",
       "buildMeta": { "providedExports": true }
@@ -15,6 +12,10 @@
     },
     "@material-ui/icons": {
       "id": "@material-ui/icons",
+      "buildMeta": { "providedExports": true }
+    },
+    "@material-ui/styles": {
+      "id": "@material-ui/styles",
       "buildMeta": { "providedExports": true }
     },
     "camo": { "id": "camo", "buildMeta": { "providedExports": true } },
@@ -40,7 +41,10 @@
       "id": "final-form-material-ui",
       "buildMeta": { "providedExports": true }
     },
-    "history": { "id": "history", "buildMeta": { "providedExports": true } },
+    "@date-io/date-fns": {
+      "id": "@date-io/date-fns",
+      "buildMeta": { "providedExports": true }
+    },
     "material-table": {
       "id": "material-table",
       "buildMeta": { "providedExports": true }

@@ -5,16 +5,17 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import Sidebar from '../components/Sidebar/Sidebar.js';
+import Appbar from '../components/Appbar/Appbar.js';
 
 import appRoutes from '../routes/app.js';
 
-import image from '../assets/img/sidebar-2.jpg';
-import logo from '../assets/img/reactlogo.png';
-import appStyles from '../assets/jss/material-dashboard-react/layouts/appStyle.js';
+import AppStyles from './AppStyles';
+
 
 const switchRoutes = (
   <Switch>
     {appRoutes.map((prop, key) => {
+      console.log(prop);
       if (prop.redirect) {
         return <Redirect from={prop.path} to={prop.to} key={key} />;
       }
@@ -24,9 +25,13 @@ const switchRoutes = (
 );
 
 class App extends React.Component {
-  state = {
-    mobileOpen: false
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      navDrawerOpen: true
+    }
+  }
 
   getRoute() {
     const { location } = this.props;
@@ -34,37 +39,34 @@ class App extends React.Component {
   }
 
   handleDrawerToggle = () => {
-    const { mobileOpen } = this.state;
-    this.setState({ mobileOpen: !mobileOpen });
+    this.setState({ navDrawerOpen: !this.state.navDrawerOpen });
+    console.log("toggle drawer:" + this.state.navDrawerOpen);
   };
 
   render() {
-    const { classes, ...rest } = this.props;
-    const { mobileOpen } = this.state;
-    return (
-      <div className={classes.wrapper}>
-        <Sidebar
-          routes={appRoutes}
-          logoText="APP NAME"
-          logo={logo}
-          image={image}
-          handleDrawerToggle={this.handleDrawerToggle}
-          open={mobileOpen}
-          color="blue"
-          {...rest}
-        />
-        <div className={classes.mainPanel} ref="mainPanel">
-          {this.getRoute() ? (
-            <div className={classes.content}>
-              <div className={classes.container}>{switchRoutes}</div>
-            </div>
-          ) : (
-            <div className={classes.map}>{switchRoutes}</div>
-          )}
-        </div>
-      </div>
-    );
+      const { classes } = this.props;
+      const { navDrawerOpen } = this.state;
+      return (
+          <div className={classes.root}>
+              <Appbar
+                  navDrawerOpen={navDrawerOpen}
+                  handleDrawerToggle={this.handleDrawerToggle}
+              />
+              <Sidebar
+                  appRoutes={appRoutes}
+                  navDrawerOpen={navDrawerOpen}
+                  handleDrawerToggle={this.handleDrawerToggle}
+              />
+              <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <div>
+                  {console.log(this.props.location)}
+                  {switchRoutes}
+                </div>
+              </main>
+          </div>
+      );
   }
 }
 
-export default withStyles(appStyles)(App);
+export default withStyles(AppStyles)(App);
