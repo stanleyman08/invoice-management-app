@@ -52,6 +52,12 @@ export default merge.smart(baseConfig, {
     require.resolve('../app/index')
   ],
 
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
+  },
+
   output: {
     publicPath: `http://localhost:${port}/dist/`,
     filename: 'renderer.dev.js'

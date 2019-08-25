@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import DateFnsUtils from '@date-io/date-fns';
+// import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './app.global.css';
@@ -11,9 +11,7 @@ const store = configureStore();
 
 render(
   <AppContainer>
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Root store={store} history={history} />
-    </MuiPickersUtilsProvider>
   </AppContainer>,
   document.getElementById('root')
 );
