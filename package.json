@@ -237,7 +237,7 @@
     "webpack": "^4.26.0",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.1.4",
     "yarn": "^1.17.3"
   },
@@ -259,6 +259,7 @@
     "handlebars": "^4.1.2",
     "history": "^4.7.2",
     "js-yaml": "^3.13.1",
+    "just-extend": "^4.0.2",
     "lodash": "^4.17.15",
     "lodash.mergewith": "^4.6.2",
     "material-table": "^1.32.0",

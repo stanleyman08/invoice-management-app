@@ -303,6 +303,18 @@ eval("module.exports = js-yaml;\n\n//# sourceURL=webpack://renderer/external_%22
 
 /***/ }),
 
+/***/ "just-extend":
+/*!******************************!*\
+  !*** external "just-extend" ***!
+  \******************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = just-extend;\n\n//# sourceURL=webpack://renderer/external_%22just-extend%22?");
+
+/***/ }),
+
 /***/ "lodash":
 /*!*************************!*\
   !*** external "lodash" ***!
@@ -480,6 +492,18 @@ eval("module.exports = redux-thunk;\n\n//# sourceURL=webpack://renderer/external
 /***/ (function(module, exports) {
 
 eval("module.exports = source-map-support;\n\n//# sourceURL=webpack://renderer/external_%22source-map-support%22?");
+
+/***/ }),
+
+/***/ "yarn.lock":
+/*!****************************!*\
+  !*** external "yarn.lock" ***!
+  \****************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+eval("module.exports = yarn.lock;\n\n//# sourceURL=webpack://renderer/external_%22yarn.lock%22?");
 
 /***/ })
 

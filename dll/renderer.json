@@ -1,7 +1,7 @@
 {
   "name": "renderer",
   "content": {
-    "history": { "id": "history", "buildMeta": { "providedExports": true } },
+    "js-yaml": { "id": "js-yaml", "buildMeta": { "providedExports": true } },
     "@fortawesome/fontawesome-free": {
       "id": "@fortawesome/fontawesome-free",
       "buildMeta": { "providedExports": true }
@@ -46,11 +46,15 @@
       "id": "handlebars",
       "buildMeta": { "providedExports": true }
     },
+    "history": { "id": "history", "buildMeta": { "providedExports": true } },
     "@date-io/date-fns": {
       "id": "@date-io/date-fns",
       "buildMeta": { "providedExports": true }
     },
-    "js-yaml": { "id": "js-yaml", "buildMeta": { "providedExports": true } },
+    "just-extend": {
+      "id": "just-extend",
+      "buildMeta": { "providedExports": true }
+    },
     "lodash": { "id": "lodash", "buildMeta": { "providedExports": true } },
     "lodash.mergewith": {
       "id": "lodash.mergewith",
@@ -98,6 +102,7 @@
     "source-map-support": {
       "id": "source-map-support",
       "buildMeta": { "providedExports": true }
-    }
+    },
+    "yarn.lock": { "id": "yarn.lock", "buildMeta": { "providedExports": true } }
   }
 }
