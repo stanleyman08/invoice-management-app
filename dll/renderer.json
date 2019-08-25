@@ -41,8 +41,19 @@
       "id": "final-form-material-ui",
       "buildMeta": { "providedExports": true }
     },
+    "fstream": { "id": "fstream", "buildMeta": { "providedExports": true } },
+    "handlebars": {
+      "id": "handlebars",
+      "buildMeta": { "providedExports": true }
+    },
     "@date-io/date-fns": {
       "id": "@date-io/date-fns",
+      "buildMeta": { "providedExports": true }
+    },
+    "js-yaml": { "id": "js-yaml", "buildMeta": { "providedExports": true } },
+    "lodash": { "id": "lodash", "buildMeta": { "providedExports": true } },
+    "lodash.mergewith": {
+      "id": "lodash.mergewith",
       "buildMeta": { "providedExports": true }
     },
     "material-table": {
